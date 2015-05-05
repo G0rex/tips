@@ -6,7 +6,7 @@ body
 @font-face
 {
 	font-family: myriad-pro;
-	src: url(fonts/667618.ttf);
+	src: url(../fonts/667618.ttf);
 }
 .mainDiv
 {	
@@ -118,7 +118,7 @@ pre
 ul{
 	margin-top: -10px;
 	margin-left: -20px;
-	list-style-image: url(images/15.png);
+	list-style-image: url(../images/15.png);
 }
 a
 {

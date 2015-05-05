@@ -3,7 +3,7 @@
 	<head>
 		<title>PHP 5.4</title>
 		<meta name="" content="">
-		<link rel="stylesheet" href="styles.css"/>
+		<link rel="stylesheet" href="../css/styles.css"/>
 	</head>
 <body>
 	<div class="mainDiv">
@@ -21,11 +21,11 @@
 		<div class="content">
 		<h2>ABOUT PHP 5.4</h2>
 		<p>
-			PHP is a scripting language most commonly used for processing and rendering Web pages server-side. Its syntax is simplenough to be easily learned by novices, yet the language is powerful enough to run some of the world’s most popular websites. PHP is also the language of choice for many popular web software packages.
+			PHP is a scripting language most commonly used for processing and rendering Web pages server-side. Its syntax is simplenough to be easily learned by novices, yet the language is powerful enough to run some of the worldï¿½s most popular websites. PHP is also the language of choice for many popular web software packages.
 		</p>
 		<h2><a name="dataTypes">DATA TYPES</a></h2>
 		<p>
-			PHP has scalar data types, compound data types, and special data types. PHP is a weakly typed language. Variables are not declared with a specific data type. Instead, a variable’s type is determined based on the context in which it is used. This is often referred to as type juggling. It is possible to use type casting in order to force a variable to be evaluated as a specific type. See <a href="http://php.net/types.type-juggling">http://php.net/types.type-juggling</a> for details on type juggling and type casting. PHP has two sets of comparison operators, those that compare values after type juggling and those that compare both values and types. See <a href="http://php.net/types.comparisons">http://php.net/types.comparisons</a> for details on how PHP handles type comparisons.
+			PHP has scalar data types, compound data types, and special data types. PHP is a weakly typed language. Variables are not declared with a specific data type. Instead, a variableï¿½s type is determined based on the context in which it is used. This is often referred to as type juggling. It is possible to use type casting in order to force a variable to be evaluated as a specific type. See <a href="http://php.net/types.type-juggling">http://php.net/types.type-juggling</a> for details on type juggling and type casting. PHP has two sets of comparison operators, those that compare values after type juggling and those that compare both values and types. See <a href="http://php.net/types.comparisons">http://php.net/types.comparisons</a> for details on how PHP handles type comparisons.
 		</p>
 		<p>
 			The scalar data types in PHP are boolean, integer, float, and string. By definition, scalar data types can only contain a single value. Boolean values can either be true or false. Integers are whole numbers that also include negative numbers (PHP does not support unsigned integers). The size of an integer is dependent on the platform on which PHP is running. Integer literals can be specified in decimal, octal, hexadecimal, or binary (as of PHP 5.4) format. A float is a number that can contain a fraction. Like integers, the size of a float is dependent on the platform on which PHP is running. Float literals can be specified in decimal format or in scientific notation format. A string in PHP is really just an array of bytes, with each byte typically representing a character. See the section on strings for more information about working with strings.
@@ -34,11 +34,11 @@
 			The compound data types in PHP are array and object. See the respective sections on arrays and objects for details on working with each.
 		</p>
 		<p>
-			The special data types in PHP are resource, NULL, and callable. A resource is a special type that holds a reference to some external resource. This external resource can be a stream or a database connection, for example. A complete list of resource types can be found at <a href="http://php.net/resource.">http://php.net/resource.</a> NULL is both a data type and the only value possible for that type. A variable with a NULL value is a variable with no value. A variable can come to be NULL by being assigned the special NULL value, by being declared but not yet set to any value, or by having its value cleared with the unset function. Some of PHP’s built-in functions accept user-defined callbacks. These parameters are considered to be of type callable. The callable type can also be used as a type hint within your user-defined functions and methods.
+			The special data types in PHP are resource, NULL, and callable. A resource is a special type that holds a reference to some external resource. This external resource can be a stream or a database connection, for example. A complete list of resource types can be found at <a href="http://php.net/resource.">http://php.net/resource.</a> NULL is both a data type and the only value possible for that type. A variable with a NULL value is a variable with no value. A variable can come to be NULL by being assigned the special NULL value, by being declared but not yet set to any value, or by having its value cleared with the unset function. Some of PHPï¿½s built-in functions accept user-defined callbacks. These parameters are considered to be of type callable. The callable type can also be used as a type hint within your user-defined functions and methods.
 		</p>
 		<h2>STRINGS</h2>
 		<p>
-			PHP supports several syntaxes for string literals: single quoted, double quoted, heredocs, and (added in PHP 5.3) nowdocs. Single quoted strings is the simplest syntax. See the documentation on strings at <a href="http://php.net/types.string">http://php.net/types.string</a> for more information about working the various string syntaxes.Double quoted strings support variable interpolation. This means that you can place a variable within a double quoted string and the variable’s value will be expanded into the resulting string. Single quoted strings do not support variable interpolation.
+			PHP supports several syntaxes for string literals: single quoted, double quoted, heredocs, and (added in PHP 5.3) nowdocs. Single quoted strings is the simplest syntax. See the documentation on strings at <a href="http://php.net/types.string">http://php.net/types.string</a> for more information about working the various string syntaxes.Double quoted strings support variable interpolation. This means that you can place a variable within a double quoted string and the variableï¿½s value will be expanded into the resulting string. Single quoted strings do not support variable interpolation.
 		</p>
 		<p>
 			The heredoc syntax works similarly to double quoted string literals. Heredocs make it easy to create multi-line string literals. The heredoc syntax also supports variable interpolation. Nowdocs (added in PHP 5.3)
@@ -65,7 +65,7 @@ are the single quoted string
 		</p>
 		<p>
 			<pre>
-$colors = array(‘red’, ‘green’, ‘blue’);</pre>
+$colors = array(ï¿½redï¿½, ï¿½greenï¿½, ï¿½blueï¿½);</pre>
 		</p>
 		<p>
 			The above is an example of an enumerative array, meaning that it is indexed by a numerical key. Since the keys were  ot specified, PHP will automatically increment the key starting with 0.
@@ -75,7 +75,7 @@ $colors = array(‘red’, ‘green’, ‘blue’);</pre>
 		</p>
 		<p>
 			<pre>
-$colors = [‘red’, ‘green’, ‘blue’];</pre>
+$colors = [ï¿½redï¿½, ï¿½greenï¿½, ï¿½blueï¿½];</pre>
 		</p>
 		<p>
 			An example of creating an associative array:
@@ -83,9 +83,9 @@ $colors = [‘red’, ‘green’, ‘blue’];</pre>
 		<p>
 			<pre>
 $colors = array(
-	‘red’ => 83,
-	‘green’ => 114,
-	‘blue’ => 124
+	ï¿½redï¿½ => 83,
+	ï¿½greenï¿½ => 114,
+	ï¿½blueï¿½ => 124
 );</pre>
 		</p>
 		<p>
@@ -96,7 +96,7 @@ $colors = array(
 		</p>
 		<p>
 			<pre>
-$colors = [‘red’, ‘green’, ‘blue’];</pre>
+$colors = [ï¿½redï¿½, ï¿½greenï¿½, ï¿½blueï¿½];</pre>
 		</p>
 		<p>
 			An example of creating an associative array:
@@ -104,9 +104,9 @@ $colors = [‘red’, ‘green’, ‘blue’];</pre>
 		<p>
 		<pre>
 $colors = array(
-	‘red’ => 83,
-	‘green’ => 114,
-	‘blue’ => 124
+	ï¿½redï¿½ => 83,
+	ï¿½greenï¿½ => 114,
+	ï¿½blueï¿½ => 124
 );
 print_r($colors);</pre>
 		</p>
@@ -116,7 +116,7 @@ print_r($colors);</pre>
 		</p>
 		<p>
 		<pre>
-$colors = array(‘red’, ‘green’, ‘blue’);
+$colors = array(ï¿½redï¿½, ï¿½greenï¿½, ï¿½blueï¿½);
 print_r($colors[0]); // red</pre>
 		</p>
 		<p>
@@ -127,12 +127,12 @@ print_r($colors[0]); // red</pre>
 function getColors()
 {
 	return array(
-		‘red’ => 83,
-		‘green’ => 114,
-		‘blue’ => 124
+		ï¿½redï¿½ => 83,
+		ï¿½greenï¿½ => 114,
+		ï¿½blueï¿½ => 124
 	);
 }
-print_r(getColors()[‘red’]); // 83</pre>
+print_r(getColors()[ï¿½redï¿½]); // 83</pre>
 		</p>
 		<p>
 			<span class="subtitle">Iteration Constructs</span><br/>
@@ -141,9 +141,9 @@ print_r(getColors()[‘red’]); // 83</pre>
 		<p>
 			<pre>
 $colors = array(
-	‘red’ => 83,
-	‘green’ => 114,
-	‘blue’ => 124
+	ï¿½redï¿½ => 83,
+	ï¿½greenï¿½ => 114,
+	ï¿½blueï¿½ => 124
 );
 foreach ($colors as $value) {
 	var_dump($value);
@@ -153,9 +153,9 @@ foreach ($colors as $value) {
 			You can also access the array keys while iterating, for example:
 			<pre>
 $colors = array(
-	‘red’ => 83,
-	‘green’ => 114,
-	‘blue’ => 124
+	ï¿½redï¿½ => 83,
+	ï¿½greenï¿½ => 114,
+	ï¿½blueï¿½ => 124
 );
 foreach ($colors as $key => $value) {
 	var_dump($key);
@@ -183,7 +183,7 @@ print_r($id);</pre>
 			<pre>
 function sayHello($to)
 {
-	return “Hello, $to.”;
+	return ï¿½Hello, $to.ï¿½;
 }</pre>
 		</p>
 		<p>
@@ -192,20 +192,20 @@ function sayHello($to)
 			<pre>
 $sayHello = function($to)
 {
-	return “Hello, $to.”;
+	return ï¿½Hello, $to.ï¿½;
 };
-$message = $sayHello(‘Bradley’);
+$message = $sayHello(ï¿½Bradleyï¿½);
 print_r($message); // Hello, Bradley.</pre>
 		</p>
 		<p>
 			Unlike lambdas, closures use variables from the scope in which the closure was defined. For example:
 			<pre>
-$greeting = ‘Hello’;
+$greeting = ï¿½Helloï¿½;
 $sayHello = function($to) use($greeting)
 {
-	return “$greeting, $to.”;
+	return ï¿½$greeting, $to.ï¿½;
 };
-$message = $sayHello(‘Bradley’);
+$message = $sayHello(ï¿½Bradleyï¿½);
 print_r($message); // Hello, Bradley.</pre>
 		</p>
 		<h2>CLASSES AND OBJECTS</h2>
@@ -221,13 +221,13 @@ supported timezones can be found at <a href="http://php.net/oop5">http://php.net
 		<p>
 			The DateTime class can be used to represent a specific date and time, and to perform operations on date and time values. To instantiate a new DateTime instance, provide the date/time in a valid format (an optional timezone can be supplied as the second parameter):
 			<pre>
-$date = new DateTime(‘2012-05-18’);</pre>
+$date = new DateTime(ï¿½2012-05-18ï¿½);</pre>
 		</p>
 		<p>
 			<span class="subtitle">Formatting</span><br/>
 			The DateTime:: format method allows a date/time to be formatted in pretty much any way conceivable through the use of format characters. The DateTime class includes several predefined constants for common formats. For example, outputing a date/time in ISO 8601 format:
 			<pre>
-$date = new DateTime(‘2012-05-18’);
+$date = new DateTime(ï¿½2012-05-18ï¿½);
 $formattedDate = $date->format(DateTime::ISO8601);
 print_r($formattedDate); // 2012-05-18T00:00:00+0000</pre>
 		</p>
@@ -237,8 +237,8 @@ print_r($formattedDate); // 2012-05-18T00:00:00+0000</pre>
 			<span class="subtitle">Date Math</span><br/>
 			PHP also includes a DateInterval class that can be used to add or subtract dates, as well as to find the difference between two dates. This date math can done with the DateTime::add, DateTime::sub, and DateTime::diff methods, respectively. Following is an example of subtracting one day from a date:
 			<pre>
-$date = new DateTime(‘2012-05-18’);
-$interval = new DateInterval(‘P1D’);
+$date = new DateTime(ï¿½2012-05-18ï¿½);
+$interval = new DateInterval(ï¿½P1Dï¿½);
 $date->sub($interval);
 print_r($date->format(DateTime::ISO8601)); // 2012-05-17T00:00:00+0000</pre>
 		</p>
@@ -251,11 +251,11 @@ print_r($date->format(DateTime::ISO8601)); // 2012-05-17T00:00:00+0000</pre>
 		</p>
 		<p>
 			Connecting<br/>
-			Creating an instance of the PDO class establishes a database connection. The first parameter to the PDO class’ constructor is the data source name (DSN). A DSN can describe properties of the data source such as the type of database, hostname, port number, and database name. The second parameter to the PDO class’ constructor is the username and the third is the password. A fourth parameter specifying driver options may also be used. To connect to a MySQL database:
+			Creating an instance of the PDO class establishes a database connection. The first parameter to the PDO classï¿½ constructor is the data source name (DSN). A DSN can describe properties of the data source such as the type of database, hostname, port number, and database name. The second parameter to the PDO classï¿½ constructor is the username and the third is the password. A fourth parameter specifying driver options may also be used. To connect to a MySQL database:
 			<pre>
 try {
 	// Assumes $username and $password have been previously set
-	$connection = new PDO(‘mysql:host=localhost;dbname=mydb’,
+	$connection = new PDO(ï¿½mysql:host=localhost;dbname=mydbï¿½,
 $username, $password);
 } catch (PDOException $ex) {
 	// Handle exception
@@ -268,11 +268,11 @@ $username, $password);
 			Executing a Query<br/>
 			To perform a SELECT query, call the PDO::query method. This will return a PDOStatement object which can be treated as an array of database rows over which you can iterate:
 			<pre>
-$connection = new PDO(‘mysql:host=localhost;dbname=mydb’, $username,
+$connection = new PDO(ï¿½mysql:host=localhost;dbname=mydbï¿½, $username,
 $password);
-$rows = $connection->query(‘SELECT firstname, lastname FROM people’);
+$rows = $connection->query(ï¿½SELECT firstname, lastname FROM peopleï¿½);
 foreach ($rows as $row) {
-	echo $row[‘firstname’] . ‘ ‘ . $row[‘lastname’] . PHP_EOL;
+	echo $row[ï¿½firstnameï¿½] . ï¿½ ï¿½ . $row[ï¿½lastnameï¿½] . PHP_EOL;
 }</pre>
 		</p>
 		<p>
@@ -282,22 +282,22 @@ foreach ($rows as $row) {
 		<table>
 			<tr>
 				<td class="leftColumn">Hot Tip</td>
-				<td class="rightColumn">Not all of the databases with PDO drivers support prepared statements. If you are using PDO with a database that does not support prepared statements, then PDO will attempt to emulate prepared statements. It is important to be aware that, in this situation, you are not getting all of the benefits of prepared statements. For example, your queries may be vulnerable to SQL injection attack. This is true even if PDO still escapes your data— escaping alone is not enough to mitigate all SQL injection attacks.</td>
+				<td class="rightColumn">Not all of the databases with PDO drivers support prepared statements. If you are using PDO with a database that does not support prepared statements, then PDO will attempt to emulate prepared statements. It is important to be aware that, in this situation, you are not getting all of the benefits of prepared statements. For example, your queries may be vulnerable to SQL injection attack. This is true even if PDO still escapes your dataï¿½ escaping alone is not enough to mitigate all SQL injection attacks.</td>
 			</tr>
 		</table>
 		<p>
 			Working with prepared statements involves first preparing the statement, then binding the parameters to values, and finally executing the statement:
 			<pre>
-$connection = new PDO(‘mysql:host=localhost;dbname=mydb’, $username,
+$connection = new PDO(ï¿½mysql:host=localhost;dbname=mydbï¿½, $username,
 $password);
 // Prepare the statement
 $statement = $connection->prepare(
-	‘UPDATE people SET email = :email WHERE id = :id’
+	ï¿½UPDATE people SET email = :email WHERE id = :idï¿½
 );
-// Bind the email parameter’s value
-$statement->bindValue(‘:email’, ‘bob@example.com’);
-// Bind the id parameter’s value
-$statement->bindValue(‘:id’, 42);
+// Bind the email parameterï¿½s value
+$statement->bindValue(ï¿½:emailï¿½, ï¿½bob@example.comï¿½);
+// Bind the id parameterï¿½s value
+$statement->bindValue(ï¿½:idï¿½, 42);
 // Execute the statement
 $success = $statement->execute();
 // Check for success
@@ -318,9 +318,9 @@ var_dump($success); // bool(true)
 			The two most important security practices for PHP programs are filtering input and escaping output. These are the areas from which the majority of security vulnerabilities originate. Some of the most important security exploits to be aware of are SQL injection, cross-site scripting (XSS), crosssite request forgery (CSRF), and session fixation. Another common problem is securely storing sensitive user data, such as passwords. Note that there is much more to security than what is covered here. Please consider these tips to be a starting point, and not a comprehensive treatment of the subject.</p>
 		<p>
 			<span class="subtitle">Filter Input</span><br/>
-			Input can come from many sources such as the end user, a database, an incoming web services API request, and countless other possible sources. At its most basic level, filtering is a form of a “sanity check” on a given input and then sanitizing that input appropriately for the given context. The following is one example of filtering input.The strip_tags function can mitigate XSS attacks by removing HTML and PHP tags from an input string:
+			Input can come from many sources such as the end user, a database, an incoming web services API request, and countless other possible sources. At its most basic level, filtering is a form of a ï¿½sanity checkï¿½ on a given input and then sanitizing that input appropriately for the given context. The following is one example of filtering input.The strip_tags function can mitigate XSS attacks by removing HTML and PHP tags from an input string:
 			<pre>
-$unfiltered = ‘<a onclick=”doBadStuff()”>Click Me!</a>’;
+$unfiltered = ï¿½<a onclick=ï¿½doBadStuff()ï¿½>Click Me!</a>ï¿½;
 $filtered = strip_tags($unfiltered);
 print_r($filtered); // Click Me!</pre>
 		</p>
@@ -331,36 +331,36 @@ print_r($filtered); // Click Me!</pre>
 		<p>
 			The htmlspecialchars function can mitigate XSS attacks by converting special characters to their equivalent HTML entities:
 			<pre>
-				$unescaped = ‘<a onclick=”doBadStuff()”>Click Me!</a>’;
+				$unescaped = ï¿½<a onclick=ï¿½doBadStuff()ï¿½>Click Me!</a>ï¿½;
 $escaped = htmlspecialchars($unescaped);
 print_r($escaped); // &lt;a onclick=&quot;doBadStuff()&quot;&gt;Click
 Me!&lt;/a&gt;</pre>
 		</p>
 		<p>
 			<span class="subtitle">Password Encryption</span><br/>
-			Often an application will need to store sensitive user data, such as passwords. Passwords should never be stored in cleartext. Passwords should be encrypted in order to mitigate the impact of compromised passwords. In the case of passwords, the encryption should be one-way. One-way encryption means that, once a value is encrypted, it cannot be decrypted. Two encryption methods that meet these requirements are bcrypt (a cryptographic hash function) and PBKDF2 (a key derivation function). These encryption algorithms are adaptive, meaning that they can be made slower to keep up with Moore’s law.
+			Often an application will need to store sensitive user data, such as passwords. Passwords should never be stored in cleartext. Passwords should be encrypted in order to mitigate the impact of compromised passwords. In the case of passwords, the encryption should be one-way. One-way encryption means that, once a value is encrypted, it cannot be decrypted. Two encryption methods that meet these requirements are bcrypt (a cryptographic hash function) and PBKDF2 (a key derivation function). These encryption algorithms are adaptive, meaning that they can be made slower to keep up with Mooreï¿½s law.
 		</p>
 		<table>
 			<tr>
 				<td class="leftColumn">Hot Tip</td>
-				<td class="rightColumn">You will find many resources on hashing passwords—or salting and hashing passwords—using algorithms such as MD5 or SHA1. Hashed passwords are susceptible to rainbow table attacks. A rainbow table is a precomputed list of reversed hashes. Salting helps mitigate rainbow table attacks, but hashed and salted passwords are still vulnerable to brute force attacks. An adaptive hashing algorithm such as bcrypt exponentially increases the cost of launching a brute force attack, a  compared to a standard hashing algorithm.</td>
+				<td class="rightColumn">You will find many resources on hashing passwordsï¿½or salting and hashing passwordsï¿½using algorithms such as MD5 or SHA1. Hashed passwords are susceptible to rainbow table attacks. A rainbow table is a precomputed list of reversed hashes. Salting helps mitigate rainbow table attacks, but hashed and salted passwords are still vulnerable to brute force attacks. An adaptive hashing algorithm such as bcrypt exponentially increases the cost of launching a brute force attack, a  compared to a standard hashing algorithm.</td>
 			</tr>
 		</table>
 		<p>
 			When a user first registers and provides his or her password, encrypt the password as follows:
 			<pre>
 // Password supplied upon registration
-$registrationPassword = ‘MySuperSecretPassword’;
+$registrationPassword = ï¿½MySuperSecretPasswordï¿½;
 // Create a unique 22 character salt
-$salt = substr(str_replace(‘+’, ‘.’, base64_
+$salt = substr(str_replace(ï¿½+ï¿½, ï¿½.ï¿½, base64_
 encode(sha1(microtime(true), true))), 0, 22);
 // Choose a two digit cost parameter from 04-31
-$cost = ‘16’;
+$cost = ï¿½16ï¿½;
 // Create an encrypted hash
-$encryptedHash = crypt($registrationPassword, ‘$2a$’. $cost. ‘$’ .
+$encryptedHash = crypt($registrationPassword, ï¿½$2a$ï¿½. $cost. ï¿½$ï¿½ .
 $salt);				
 			</pre>
-			The $2a$ string at the beginning of the second parameter instructs the crypt function to use the Blowfish cypher (on which bcrypt is built). The two digit cost (a value between 04 and 31) indicates how much computational power should be used. The higher the cost parameter, the longer it will take for crypt to execute, and the more secure your users’ passwords will be. As computers get faster, this value should be increased. Finally, the salt prevents rainbow table attacks. See the crypt function’s documentation at <a href="http://php.net/crypt/">http://php.net/crypt</a> for more details.
+			The $2a$ string at the beginning of the second parameter instructs the crypt function to use the Blowfish cypher (on which bcrypt is built). The two digit cost (a value between 04 and 31) indicates how much computational power should be used. The higher the cost parameter, the longer it will take for crypt to execute, and the more secure your usersï¿½ passwords will be. As computers get faster, this value should be increased. Finally, the salt prevents rainbow table attacks. See the crypt functionï¿½s documentation at <a href="http://php.net/crypt/">http://php.net/crypt</a> for more details.
 		</p>
 		<p>
 			The encrypted hash ($encryptedHash) can now be stored in your database for reference when the user attempts to login. When the user attempts to login, the original cost, salt, and encrypted password can be extracted from the encrypted hash as follows:
@@ -374,28 +374,28 @@ $salt = substr($encryptedHash, 7, 22);
 			Finally, we can generate an encrypted hash using the password from the
 user attempting to login and compare it to the stored encrypted hash:
 			<pre>// Password supplied during a login attempt
-$loginAttemptPassword = ‘MySuperSecretPassword’;
+$loginAttemptPassword = ï¿½MySuperSecretPasswordï¿½;
 // Create an encrypted hash
-$loginAttemptEncryptedHash = crypt($loginAttemptPassword, ‘$2a$’.
-$cost. ‘$’ . $salt);
+$loginAttemptEncryptedHash = crypt($loginAttemptPassword, ï¿½$2a$ï¿½.
+$cost. ï¿½$ï¿½ . $salt);
 // Compare the two encrypted hashes
 if ($loginAttemptEncryptedHash == $encryptedHash) {
-	echo ‘Login successful!’;
+	echo ï¿½Login successful!ï¿½;
 } else {
-	echo ‘Login failed!’;
+	echo ï¿½Login failed!ï¿½;
 }</pre>
-			As you can see demonstrated above, it is not necessary to store a user’s
-cleartext password in order to later verify that user’s password when he
+			As you can see demonstrated above, it is not necessary to store a userï¿½s
+cleartext password in order to later verify that userï¿½s password when he
 or she attempts to login. You may choose to instead use the PBKDF2 key
 derivation function, but PBKDF2 is not as easy to implement as bcrypt
-using PHP’s built-in functionality.
+using PHPï¿½s built-in functionality.
 		</p>
 		<h2><a name="frameworks">FRAMEWORKS</a></h2>
 		<p>
-			A framework is a tool that aims to provide a set of features that can be reused from project to project, making more efficient user of programmers’ time. There are many frameworks available to PHP programmers. Some of the most popular frameworks include Zend Framework, Symfony, CodeIgniter, CakePHP, and Lithium. Microframeworks such as Silex, Slim, and Limonade are also gaining in popularity. Choosing a framework is a decision involving many context-specific factors. A comparison of frameworks is beyond the scope of this reference guide.</p>
+			A framework is a tool that aims to provide a set of features that can be reused from project to project, making more efficient user of programmersï¿½ time. There are many frameworks available to PHP programmers. Some of the most popular frameworks include Zend Framework, Symfony, CodeIgniter, CakePHP, and Lithium. Microframeworks such as Silex, Slim, and Limonade are also gaining in popularity. Choosing a framework is a decision involving many context-specific factors. A comparison of frameworks is beyond the scope of this reference guide.</p>
 		<h2><a name="configuration"></a>CONFIGURATION</h2>
 		<p>
-			PHP’s behavior can be configured at a variety of levels:
+			PHPï¿½s behavior can be configured at a variety of levels:
 		</p>
 		<p>
 			<span class="subtitle">Global Configuration</span><br/>
@@ -415,7 +415,7 @@ using PHP’s built-in functionality.
 ; it could be very dangerous in production environments. Depending on the code
 ; which is triggering the error, sensitive information could potentially leak
 ; out of your application such as database usernames and passwords or worse.
-; It’s recommended that errors be logged on production servers rather than
+; Itï¿½s recommended that errors be logged on production servers rather than
 ; having the errors sent to STDOUT.
 ; Possible Values:
 ; Off = Do not display any errors
@@ -428,11 +428,11 @@ using PHP’s built-in functionality.
 display_errors = On</pre>
 		</p>
 		<p><span class="subtitle">Host- and Directory-specific Configuration</span><br/>
-			If you lack access to the php.ini file, you may be able to change desired directives within Apache’s httpd.conf or .htaccess files. For instance, to force the display of all PHP errors for your development machine, add the following to an .htaccess file:
+			If you lack access to the php.ini file, you may be able to change desired directives within Apacheï¿½s httpd.conf or .htaccess files. For instance, to force the display of all PHP errors for your development machine, add the following to an .htaccess file:
 			<pre>
 php_value error_reporting -1
 php_flag display_errors on</pre>
-			Displaying errors is very helpful—and highly recommended—in development. For security reasons, though, you should not display errors in production. Instead, errors can be logged for later review. For more details please read the documentation on error handling and logging at <a href="http://php.net/errorfunc">http://php.net/errorfunc.</a>
+			Displaying errors is very helpfulï¿½and highly recommendedï¿½in development. For security reasons, though, you should not display errors in production. Instead, errors can be logged for later review. For more details please read the documentation on error handling and logging at <a href="http://php.net/errorfunc">http://php.net/errorfunc.</a>
 		</p>
 		<table>
 			<tr>
@@ -444,11 +444,11 @@ php_flag display_errors on</pre>
 			<span class="subtitle">Script-specific Configuration</span><br/>
 			Occasionally you'll want to tweak directives on a per-script basis. For instance to change PHP's maximum allowable execution time for a script tasked with uploading large files, you could call the ini_set() function from within your PHP script like so:
 			<pre>
-ini_set(‘max_execution_time’, 60);</pre>
+ini_set(ï¿½max_execution_timeï¿½, 60);</pre>
 		</p>
 		<h2>BUILT-IN WEB SERVER</h2>
 		<p>
-			PHP 5.4 introduced a built-in web server. This functionality should only be used for development purposes—it should not be used in production. To start the web server, first navigate to your project’s document root and then start the web server:
+			PHP 5.4 introduced a built-in web server. This functionality should only be used for development purposesï¿½it should not be used in production. To start the web server, first navigate to your projectï¿½s document root and then start the web server:
 			<pre>
 $ cd public
 $ php -S localhost:8080</pre>
@@ -459,7 +459,7 @@ $ php -S localhost:8080</pre>
 			A common debugging tactic in PHP is to make calls to the print_r or var_dump functions within your code. The print_r function accepts an expression to be printed and an optional boolean value indicating whether or not the function should return its output rather than printing it directly (the default value is false). The var_dump function accepts one or more expressions to be dumped and provides more detail about the expression or expressions.
 		</p>
 		<p>
-			A helpful PHP extension for debugging is Xdebug. When installed, Xdebug replaces PHP’s var_dump function with its own. Xdebug’s var_dump function outputs HTML (assuming PHP’s html_errors configuration directive is set to On and PHP is not being used from the command line) with different colors for different data types.
+			A helpful PHP extension for debugging is Xdebug. When installed, Xdebug replaces PHPï¿½s var_dump function with its own. Xdebugï¿½s var_dump function outputs HTML (assuming PHPï¿½s html_errors configuration directive is set to On and PHP is not being used from the command line) with different colors for different data types.
 		</p>
 		<table>
 			<tr>
@@ -468,7 +468,7 @@ $ php -S localhost:8080</pre>
 			</tr>
 		</table>
 		<p>
-			A better approach to debugging than that described previously is to use Xdebug’s remote debugging feature. This feature allows a developer to interactively step through and debug PHP code. Xdebug’s remote debugging feature is supported by a command line client that is bundled with Xdebug as well as a number of integrated development environments (IDE) and other tools. A list of supported clients can be found at <a href="http://xdebug.org/docs/remote">http://
+			A better approach to debugging than that described previously is to use Xdebugï¿½s remote debugging feature. This feature allows a developer to interactively step through and debug PHP code. Xdebugï¿½s remote debugging feature is supported by a command line client that is bundled with Xdebug as well as a number of integrated development environments (IDE) and other tools. A list of supported clients can be found at <a href="http://xdebug.org/docs/remote">http://
 xdebug.org/docs/remote</a>.
 		</p>
 		<h2>UNIT TESTING</h2>
@@ -484,14 +484,14 @@ xdebug.org/docs/remote</a>.
 			<pre>$ pear channel-discover pear.phpunit.de</pre>
 			Once the channel has been discovered, you can install a package from that channel using the install command, for example:
 			<pre>$ pear install phpunit/PHPUnit</pre>
-			f you’re using PHP 5.3 or later, then you can instead use PEAR2 and Pyrus to install PEAR packages. More information about Pyrus can be found at <a href="http://pear2.php.net/">http://pear2.php.net/</a>.
+			f youï¿½re using PHP 5.3 or later, then you can instead use PEAR2 and Pyrus to install PEAR packages. More information about Pyrus can be found at <a href="http://pear2.php.net/">http://pear2.php.net/</a>.
 		</p>
 		<p>
 			Composer<br/>
 			While PEAR is a tool for managing system-wide packages, Composer is a tool for managing dependencies on a per-project basis. Declaring dependencies is as simple as adding a JavaScript Object Notation (JSON) formatted file named composer.json to the root of your project. For example, you can indicate that your project requires PHPUnit version 3.7 with the following composer.json file:
 			<pre>{
-	“require”: {
-		“phpunit/phpunit”: “3.7.*”
+	ï¿½requireï¿½: {
+		ï¿½phpunit/phpunitï¿½: ï¿½3.7.*ï¿½
 	}
 }			</pre>
 			Next, you need to install Composer by downloading it in to the root of your project:
@@ -500,13 +500,13 @@ xdebug.org/docs/remote</a>.
 			<pre>$ php composer.phar install</pre>
 			You can learn more about Composer by visiting http://getcomposer.org/.
 		</p>
-		<h2>ÊÎÐÈÑÍ² ²ÍÒÅÐÍÅÒ ÐÅÑÓÐÑÈ</h2>
+		<h2>ï¿½ï¿½ï¿½ï¿½ï¿½Í² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</h2>
 		<p>
-			Òàáëèöÿ 1. Êîðèñí³ ³íòåðíåò-ðåñóðñè
+			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		</p>
 		<table class="tableResources">
 			<tr>
-				<th>Íàçâà</th>
+				<th>ï¿½ï¿½ï¿½ï¿½ï¿½</th>
 				<th>URL</th>
 			</tr>
 			<tr>
@@ -538,7 +538,7 @@ xdebug.org/docs/remote</a>.
 				<td><a href="http://oreilly.com/php/">http://oreilly.com/php/</a></td>
 			</tr>
 			<tr>
-				<td>Highest Voted ‘PHP Questions on Stack Overflow</td>
+				<td>Highest Voted ï¿½PHP Questions on Stack Overflow</td>
 				<td><a href="http://stackoverflow.com/questions/tagged/php">http://stackoverflow.com/questions/tagged/php</a></td>
 			</tr>
 		</table>
