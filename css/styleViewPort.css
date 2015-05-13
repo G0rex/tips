@@ -1,0 +1,119 @@
+.back{
+	background-color: #f3f3f3;
+}
+
+.BodyDiv{
+	width: 960px;
+	background: #ffffff;
+	height: auto;
+	margin-left: 155px;
+	margin-top: 75px;
+	
+}
+
+.TitleDiv{
+	margin-top: 20px;
+	width: auto;
+	height: 30px;
+	font-size:30px;
+	float: right; 
+	
+}
+.MenuDiv{
+	font-size: 18px;
+	width: 200px;
+	height: 200px;
+	
+}
+.COLOR{
+	color:#666666;
+	
+}
+.InfoDiv{
+	width: 100%-40px;
+	padding: 20px;
+	font-size: 18px;
+	font-family: MyriadPro;
+	
+}
+pre{
+	font-size: 18px;
+	font-family: MyriadPro;
+}
+
+p{
+	text-indent: 30px;
+}
+.ArticleDiv{
+	text-align: center;
+	width: 600px;
+	font-size: 25px;
+	height: auto;
+	font-family: ARIAL BLACK;
+	padding: auto ;
+	background: #870115;
+	color: #ffffff;
+	margin: auto;
+}
+.CodeDiv{
+	padding: 15px;
+	background-color:#d1c9c2;
+	border: 1px  #837d7c;
+	border-style: solid;
+}
+.TableHead
+{
+font-weight: bold;
+font-size:22px;	
+text-align: center;
+
+}
+.NewTitle
+	{
+		font-size: 15px;
+		font-weight: bold;
+		font-family: ARIAL BLACK;
+	}
+table{
+	padding: 5px;
+	width: auto;
+	height: auto;
+	
+	margin: auto;
+	border: 1px solid #040000;		
+	}
+.BolderText{
+		font-weight: bold;
+		font-size: 25px;
+	}
+th{	
+		padding: 10px;
+	    background-color: #5fb4e7;
+		font-size: 30px;
+		border: 1px solid #040000;
+	}
+tr{
+	
+	padding: 10px;
+	font-size: 15px;
+	border: 1px solid #040000;
+}
+td{
+	text-align: center;
+	padding: 10px;
+	background-color: #98cded;
+	width: 300px;
+	font-size: 17px;
+	border: 1px solid #040000;
+	font-weight: bolder;
+}
+h2{
+	font-weight: bold;
+}
+.AboutAuthorDiv{
+	padding: 10px;
+	float: left;
+	width: auto;
+	height: auto;
+	font-size: 22px;
+}
