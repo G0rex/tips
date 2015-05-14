@@ -1,0 +1,749 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link href="styleViewPort.css" rel="stylesheet"/>
+<title>HTML5 Mobile Development</title>
+<meta name="" content="">
+
+</head>
+<body class="back">
+<div class="BodyDiv">
+	<div class="TitleDiv">HTML5  <a style="color: red"> Mobile Development</a></div>
+	<div class="MenuDiv" class="COLOR"><pre>
+		CONTENTS INCLUDE:
+ <a href="#Basic">Basics: What is a Viewport</a>
+ <a href="#Mobile">Mobile URLs</a>
+ <a href="#High">High Resolutions Support</a>
+ <a href="#MobileIcons">Mobile Icons</a>
+ <a href="#Touch">Touch Events</a>
+ <a href="#Offline">Offline Support</a>... and more!
+	</pre>				
+	</div>
+	<div class="COLOR" class="InfoDiv"><p>
+		The HTML5 umbrella covers a vast range of specifications, APIs,
+techniques, and design approaches to web development. Several of these
+technologies are intended to help developers build web applications
+optimized for mobile devices. Not all platforms support the same features
+in the same way, however. Moreover, specific hardware differences often
+require special treatment beyond the W3C spec, no matter how the
+platform implements the spec.</p>
+		
+		<p> This Refcard is intended to bring you up to speed, and help you jump
+head-first into mobile HTML5 development. The card first covers the
+most important HTML5 mobile technologies, including key variations by
+platform and device, then offers a cream-of-the-crop selection from the
+vast ecosystem of tools, frameworks, and communities that have sprung
+up to support mobile HTML5 development. The card assumes basic
+knowledge of core web development technologies (JavaScript, HTML,
+CSS).</p>
+		<div class="ArticleDiv" id="#Basic">BASICS: WHAT IS A VIEWPORT?</div>
+		<p>A viewport allows us to normalize different devices to get the best sizes for
+a mobile website or webapp and to avoid initial zooming.</p>
+		<p>
+			All platforms support viewport definitions through &ltmeta&gt tags:
+		</p>
+		<div class="CodeDiv"><p>&ltmeta name=&quotviewport&quot content=&quot{comma-separated options}&quot&gt</p></div> 
+			<p>The most useful version is:</p>
+			<div class="CodeDiv"><p>&ltmeta name=&quotviewport&quot content=&quotwidth=device-width&quot&gt</p></div>
+			<p class="BolderText">Viewport options</p>
+		<table>
+			<tr>
+			<th class="TableHead">Option</th>
+			<th class="TableHead">Values</th>
+			</tr>
+			<tr>
+				<td>width</td>
+				<td>Width of the virtual viewport that the browser will expose to our website in CSS pixels or the constant
+device-width</td>
+			</tr>
+			<tr>
+				<td>height</td>
+				<td>Height of the virtual viewport that the browser will expose to our website in CSS pixels or the constant
+device-width</td>
+			</tr>
+			<tr>
+				<td>user-scalable</td>
+				<td>no/yes</td>
+			</tr>
+			<tr>
+				<td>initial-scale</td>
+				<td>Float value (1=no zoom)</td>
+			</tr>
+			<tr>
+				<td>minimum-scale</td>
+				<td>Float value</td>
+			</tr>
+			<tr>
+				<td>maximum-scale</td>
+				<td>Float value</td>
+			</tr>
+			<tr>
+				<td>target-densitydpi</td>
+				<td>Integer value (70 to 400) in DPI or one of the following
+constants: device-dpi, high-dpi, medium-dpi, low-dpi.
+Not available on Safari for iOS</td>
+			</tr>
+		</table>
+		<p></p>
+		<p class="NewTitle">Viewport Through CSS</p>
+		<p>Internet Explorer since v10 also supports @viewport on CSS:</p>
+		<div class="CodeDiv">@-ms-viewport { width: device-width;}</div>
+ 		<p>On Windows 8, including tablets, IE can work in snap state. We can define
+the viewport only when in this mode:</p>
+		<div class="CodeDiv">@media screen and (max-width: 400px) {@-ms-viewport { width: 320px; }}</div>
+		<p class="NewTitle">Device-Width Values</p>
+		<p>  When using width=device-width as the viewport&#39s width, the final width
+that we&#39ll have available may be (measured in CSS pixels):</p>
+		<table>
+			<th class="TableHead">Option</th>
+			<th class="TableHead">Values</th>
+			<tr>
+				<td>320</td>
+				<td>The most common value on smartphones including iPhone, Windows Phone, Android (medium screen sizes < 4")
+</td>
+			</tr>
+			<tr>
+				<td>360</td>
+				<td>Large screen Android smartphones (< 5"), such as Galaxy
+SIII & SIV</td>
+				<tr>
+					<td>400</td>
+					<td>Phablets (>5"), such as Galaxy Note</td>
+				</tr>
+				<tr>
+					<td>600</td>
+					<td>Small tablets</td>
+				</tr>
+				<tr>
+					<td>768</td>
+					<td>Large tablets</td>
+				</tr>
+			</tr>
+		</table>
+		<p>Even on high-resolution screens, such as Retina displays, you will always
+get a width in CSS pixels with a value of 320. Therefore, the available width
+for the canvas is the same for all devices.</p>
+		<p class="NewTitle">Landscape viewport</p>
+		<p>Safari for iPhone will not use the available space on the viewport on
+landscape and it will zoom in the content. To avoid this behavior we can
+use the code on <a href="https://gist.github.com/901295"> https://gist.github.com/901295</a></p>
+
+	<div class="ArticleDiv" id="Mobile">MOBILE URLS</div>
+	<p>Using standard hyperlinks we can communicate with the operating
+system. Remember to encode in URL format any parameter that you might
+pass through.</p>
+	<h2>Calls and messaging</h2>
+	<p>To initiate a call, tel:{phone-number}</p>
+	<div class="CodeDiv">&lta href=&quottel:+14152110022&quot&gtCall us&lt/a&gt</div>
+	<p>To initiate an SMS, sms:{destination}?body={message}.
+The body might be ignored by some platforms.</p>
+	<div class="CodeDiv">&lta href=&quotsms:1111?body=Hello&quot&gtSend us SMS&lt/a&gt</div>
+	<p>To initiate a mail compose, mailto:{to}?subject={subject}&body={message}
+iOS supports HTML on the body</p>
+	<div class="CodeDiv">&lta href=&quotmailto:user@domain.com?subject=Hello?&quot&gtSend us SMS&lt/a&gt</div>
+	<p>To initiate a Facetime call on iOS, facetime:{number/user}</p>
+	<div class="CodeDiv">&lta href=&quotfacetime:myuser&quot&gtCall us with Facetime&lt/a&gt</div>
+	<p>To initiate a Skype call, skype:{user}?call</p>
+	<div class="CodeDiv">&lta href=&quotskype:myuser?call&quot&gtCall us with Skype&lt/a&gt</div>
+	<p>To tweet through the native Twitter app, twitter://post?message={message}</p>
+	<div class="CodeDiv">&lta href=&quottwitter://post?Hello&quot&gtTweet&lt/a&gt</div>
+	<h2>Maps and Navigation</h2>
+	<p>To open the Maps app on Android and iOS < 6, http://maps.google.
+com?q={query}</p>
+<div class="CodeDiv">&lta href=&quothttp://maps.google.com?q=golden+gate+bridge&quot&gtOpen Map&lt/
+a&gt</div>
+<p>To initiate a navigation on Android and iOS < 6, http://maps.google.com?sa
+ddr={point1}&daddr={point2}</p>
+<div class="CodeDiv">&lta href=&quothttp://maps.google.com?saddr=golden+gate+bridge
+&daddr=Pier+39&quot&gtNavigate to Pier 39&lt/a&gt</div>
+<p>To open the Maps app on iOS >=6, http://maps.apple.com?q={query}</p>
+<div class="CodeDiv">&lta href=&quothttp://maps.apple.com?q=golden+gate+bridge&quot&gtOpen Map&lt/a&gt</div>
+<p>To initiate a navigation on iOS >= 6, http://maps.apple.com?saddr={point1}
+&daddr={point2}</p>
+<div class="CodeDiv">&lta href=&quothttp://maps.apple.com?saddr=golden+gate+bridge
+&daddr=Pier+39&quot&gtNavigate to Pier 39&lt/a&gt</div>
+<h2>Apple Stores</h2>
+<p>To open iTunes, AppStore or iBookStore on iOS, generate the link from<a href="https://itunes.apple.com/linkmaker">
+https://itunes.apple.com/linkmaker</a></p>
+<h2>To remove automatic linking</h2>
+<div class="CodeDiv">&ltmeta name=&quotformat-detection&quot content=&quottelephone=no&quot&gt<br />
+&ltmeta name=&quotx-rim-auto-match&quot content=&quotnone&quot forua=&quottrue&quot&gt</div>
+    <p></p> <div class="ArticleDiv" id="High">HIGH RESOLUTION SUPPORT</div>
+    <p>Devices with a high-resolution display (as in Retina iOS devices) will use a
+multiplier for all your dimensions, known as the device pixel ratio. Therefore,
+if you draw a 100 pixels element it will measure 100 device pixels on a
+device with an average screen density, it will be rendered as 200 device
+pixels on a high resolution device such as iPhone 5, and a 300 device pixels
+on a ultra high resolution device, such as Samsung Galaxy SIV.</p>
+
+<p>Thanks to the device pixel ratio, our design will look the same in inches on
+every device, regardless of the screen density.</p>
+<h2>Using scalar solutions</h2>
+<p>Using these techniques, our content will render properly on all kinds of
+screen densities without image quality loss:</p>
+<p class="NewTitle">SVG: Scalable Vector Graphics</p>
+<p>We can use SVG as an external document or as inline using the new &ltsvg&gt
+element</p>
+<p class="NewTitle">Font face</p>
+<p>We can use font files for iconography in conjunction with CSS3 Font face.
+Look at <a href="fontello.com"> fontello.com</a> and <a href="icomoon.io"> icomoon.io</a></p>
+<p class="NewTitle">CSS3</p>
+<p>Use CSS3 for effects, gradients, rounded corners and backgrounds</p>
+<h2>Providing alternate bitmap files</h2>
+<p>When working with bitmap files (JPEG, GIF, PNG), we can provide different
+versions of the same file for different resolution. Be careful about the final
+size for high-resolution devices</p>
+<p class="NewTitle">Using background images and media queries</p>
+<p>If bitmap images are defined using background images on CSS, we can
+provide alternate versions using the extension (prefixed) device-pixel-ratio.
+For devices with a pixel ratio of 2 or more:</p>
+<div class="CodeDiv"><pre>/* Low resolution version */
+#picture {
+ background-image: url(picture_low.png);
+}
+/* High resolution version with different prefixes */
+@media screen and (min--moz-device-pixel-ratio: 2),
+ only screen and (-webkit-min-device-pixel-ratio: 2) 
+ {
+#picture {
+ background-image: url(picture_hi.png);
+ background-size: 100%;
+}
+}</pre></div>
+<p id="NEWTITLE">Using image-set</p>
+<p>On Safari for iOS from version 6 we can use the -webkit-image-set function
+to provide different images from CSS:</p>
+<div class="CodeDiv">var pixelRatio = window.devicePixelRatio || 1;
+<br />
+<br />
+if (pixelRatio >= 2) {<br />
+ document.querySelector(&quot#image1&quot).src = &quotpicture_hi.png&quot;<br />
+}<br /></div>
+<p> <div class="ArticleDiv" id="MobileIcons">MOBILE ICONS</div></p>
+<p>We need to provide different icons for the tab or title area and for the home
+screen when the user adds an icon to it. Different platforms and devices
+support different icon sizes.</p>
+<h2>Window and tab icons</h2>
+<div class="CodeDiv"><pre>
+&ltlink rel=&quoticon&quot href=&quoticon_32.png&quot&gt
+&lt!-- For IE, we need an icon in ICO format --&gt
+&ltlink rel=&quotshortcut icon&quot href=&quoticon.ico&quot&gt
+&lt-- iPad icons --&gt
+&ltlink rel=&quotapple-touch-icon&quot href=&quoticons/72.png&quot sizes=&quot72x72&quot&gt
+&ltlink rel=&quotapple-touch-icon&quot href=&quoticons/144.png&quot
+sizes=&quot144x144&quot&gt
+&lt!-- iPhone and iPod touch icons --&gt
+&ltlink rel=&quotapple-touch-icon&quot href=&quoticons/57.png&quot sizes=&quot57x57&quot&gt
+&ltlink rel=&quotapple-touch-icon&quot href=&quoticons/114.png&quot
+sizes=&quot114x114&quot&gt</pre>
+</div>
+<p>Other platforms-such as Android, BlackBerry and Symbian-support the
+apple-touch-icon link with non-standard sizes.</p>
+<p>Nokia Symbian also supports:</p>
+<p><div class="CodeDiv">&ltlink rel=&quotnokia-touch-icon&quot href=&quoticons/54.png&quot&gt</div> </p>
+<p class="NewTitle">Precomposed icons</p>
+<p>By default, Apple will add shadow, rounded corners and 3D shine effects to
+the icons, as in the following image:</p>
+<p>To avoid some of these effects we can use the alternate version</p>
+<p><div class="CodeDiv">&ltlink rel=&quotapple-touch-icon-precomposed&quot href=&quoticons/72.png&quot
+sizes=&quot72x72&quot&gt</div> </p>
+<h2>Windows 8 Start Screen Tile</h2>
+<p>Internet Explorer 10 on Windows 8 supports a "Pin to the Start Screen"
+feature. We can define the background color and the icon to be used in the
+Start Screen using:</p>
+<p><div class="CodeDiv">&ltmeta name=&quotmsapplication-TileImage&quot content=&quoticons/tile144.png&quot&gt<br />
+&ltmeta name=&quotmsapplication-TileColor&quot content=&quot#FFFF00&quot&gt</div> </p>
+<p class="NewTitle">Updating a badge notification</p>
+<p>The Start Screen Tile may be updated frequently defining an XML URL
+through:</p>
+<p><div class="CodeDiv">&ltmeta name=&quotmsapplication-badge&quot<br />
+content=&quotfrequency=1440;polling-uri={xml-url}&quot&gt</div> </p>
+<p>The XML will look like:</p>
+<p><div class="CodeDiv">&lt?xml version=&quot1.0 ?&gt<br />
+&ltbadge value=&quot30&quot&gt&lt/badge&gt</div> </p>
+<div class="ArticleDiv" id="Upgrade">UPGRADE TO WEBAPP</div>
+<p>A webapp is a hosted website that can be installed with a home screen icon
+and once installed it works full-screen outside of the browser and it might
+have some kind of super powers in terms of permissions and support.</p>
+<h2>iOS Home Screen webapps</h2>
+<p>On iPhone and iPad we can create webapps using a meta tag and usually
+adding the apple-touch-icon link:</p>
+<div class="CodeDiv">&ltmeta name=&quotapple-mobile-web-app-capable&quot content=&quotyes&quot&gt</div>
+<p>Once added to the Home Screen, a page with the meta tag will open in full
+screen mode.</p>
+<p>We can customize the status bar appearance through one of the possible
+options on this meta tag:</p>
+<div class="CodeDiv">&ltmeta name=&quotapple-mobile-web-app-status-bar-style&quot<br />
+content=&quot{black/default/black-translucent}&quot&gt</div>
+<p class="NewTitle">Startup images</p>
+<p>When the webapp is opened from the Home Screen, we can define a
+startup image that acts as the image while the webapp is being loaded:</p>
+<div class="CodeDiv">&ltlink rel=&quotapple-touch-startup-image&quot href=&quotstartup.png&quot&gt</div>
+
+<p>The image has to be full screen size and because there are several
+resolutions (iPhone 3GS, iPhone 4S, iPhone 5, iPad Mini, iPad 2) we can use
+media queries to provide different versions.</p>
+<p>For iPhone 5 and latest iPods touch we can use:</p>
+<div class="CodeDiv">&ltlink rel=&quotapple-touch-startup-image&quot href=&quotstartup.png&quot
+media=&quotonly screen and (device-height: 568px) and
+(-webkit-device-pixel-ratio: 2)&quot&gt</div>
+<p>We can also provide portrait and landscape versions for iPads using
+orientation: landscape and orientation: portrait in the media attribute.</p>
+<h2>Opening links</h2>
+<p>While in a webapp, all the links are opened in Safari (new window). To
+open a link and replace the current HTML in our app context, we can use
+JavaScript as in:</p>
+<div class="CodeDiv">&lta href='#' onclick='location.href=&quotnewfile.html&quot '&gtGo&lt/a&gt</div>
+<h2>Mozilla open webapps</h2> 
+<p>On Firefox for desktop and mobile, including Firefox OS, we can install a
+webapp using a manifest JSON file and a JavaScript API.</p>
+<p>The manifest file looks like:</p>
+<div class="CodeDiv"><pre>{
+&quotname&quot: &quotMy HTML5 App&quot,
+&quotdescription&quot: &quotThis is the description of the app&quot,
+&quotlaunch_path&quot: &quot/index.html&quot,
+&quoticons&quot: {
+&quot128&quot: &quot/img/icon-128.png&quot // >=128 is mandatory
+},
+&quotdefault_locale&quot: &quoten&quot
+}</pre></div>
+<p>To initiate the webapp installation we can use the Apps API:</p>
+<div class="CodeDiv"><pre> var r = window.navigator.mozApps.install(&quot/manifest.webapp&quot);
+r.onsuccess = function() {
+alert(&quotApp installed&quot)
+}
+r.onerror = function() {
+alert(&quotApp installed&quot)
+}</pre></div><p></p>
+<div class="ArticleDiv" id="Touch">TOUCH EVENTS</div>
+<p>Mouse events (such as click) are not always suitable for mobile devices for
+different reasons, including:</p>
+<p>a) A delay of 300ms before firing the event handler.<br /></p>
+
+<p>b) They don&#39;t support multitouch.<br /></p>
+<p> c) The clickable area using a finger is not always just one pixel.<br /></p>
+<h2>Apple Touch Events</h2>
+<p>Safari on iOS created the touch events, a series of 4 events that we can
+detect on any DOM element. Most of the other mobile browsers (excluding
+IE) support this specification</p>
+<p>The events available are:</p>
+<p class="BolderText">. touchstart</p>
+<p class="BolderText">. touchend</p>
+<p class="BolderText">. touchmove</p>
+<p class="BolderText">. touchcancel</p>
+<p>All the events can be attached using addEventListener or through HTML
+DOM properties, such as ontouchstart. Every event receives through the
+first argument a touches collection. This collection includes each of the
+current available touches as a Touch object where we can get coordinates
+(such as pageX):</p>
+<div class="CodeDiv"><pre> document.addEventListener(&quottouchstart&quot, function(event) {
+var touches = event.touches;
+var quantity = touches.length;
+var firstTouch = touches[0];
+var coordinates = {
+x: firstTouch.pageX,
+y: firstTouch.pageY
+ }
+}, false);</pre></div>
+<div class="NewTitle"> Gesture API</div>
+<p>Compatible only with Safari on iOS, we can use gesture events to detect
+two-fingers rotate and pinch gestures:</p>
+<div class="CodeDiv"><pre> document.addEventListener(&quotgesturechange&quot, function(event) {
+var currentRotation = event.rotation;
+var currentScale = event.scale;
+}, false);</pre></div>
+<p></p><h2> W3C Touch Events</h2>
+<p>W3C has standardized Apple Touch Events with the additions of touchenter
+and touchleave for dragging purposes. Firefox and BlackBerry smartphones
+and tablets are using this spec.</p>
+<p>The Gesture API is not included.</p>
+<h2>Microsoft Pointer Events</h2>
+<p>Microsoft is using another approach through Pointer events (also to be
+standardized in the W3C). Pointer events inherit from mouse events;
+therefore instead of receiving a collection of touches we receive one call per
+touch only with the information of the current point. </p>
+<p>Pointer events include support for touch, mouse, and styles; the most
+useful available events are pointerdown, pointerup, pointercancel,
+pointermove, pointerover, pointerout. In IE10, these events are prefixed with
+MS; for example: mspointerup.</p>
+<div class="CodeDiv"><pre> document.addEventListener(&quotmspointerdown&quot, function(event) {
+var coordinates = {
+x: event.clientX,
+y: event.clientY
+ }
+}, false);</pre></div>
+<p></p>
+<div class="NewTitle">Gesture API</div>
+<p>Microsoft also supports a Gesture API for more complex touch interaction
+detection, including:</p>
+<p class="BolderText">. msgesturehold</p>
+<p class="BolderText">. msgesturetap</p>
+<p class="BolderText">. msgesturestart</p>
+<p class="BolderText">. msgestureend</p>
+<p class="BolderText">. msgesturechange</p>
+<p class="BolderText">. msinertiastart</p>
+<div class="ArticleDiv" id="Offline">OFFLINE SUPPORT</div>
+<p>Most mobile browsers support offline access through the Application
+Cache API. This API allows us to define a package that the browser will
+install for future access.</p>
+<h2>Step 1: Define the manifest file</h2>
+<div class="CodeDiv">&lt!DOCTYPE html&gt<br />
+&lthtml manifest=&quotoffline.manifest&quot&gt</div>
+<h2>Step 2: Define the offline.manifest</h2>
+<div class="CodeDiv"><pre>CACHE MANIFEST
+# This is a comment line
+# We define first the files that need to be downloaded
+# The HTML file is always included in the package
+CACHE:
+styles/mystyles.css
+scripts/mycode.js
+images/myimages.png
+# If we want the app to access some resources on the web
+# We can define specific URLs or a pattern, such as *
+NETWORK
+*</pre> </div>
+<h2>Step 3: Detect events client-side</h2>
+<p>Through the object window.applicationCache we can detect several
+events over the process, such as downloading, cached, noupdate, and
+updateready.</p>
+<div class="CodeDiv"><pre> window.applicationCache.addEventListener(&quot;cached&quot; ,
+function() {
+ alert(&quot; package was installed&quot;);
+}
+, false);</pre></div>
+<h2>How Application Cache works</h2>
+<p>If the webapp was installed (cached event) then the next time the user
+accesses it, it will always be loaded from the cached version, even if the
+user has a connection.</p>
+<p>If there is a connection available, the browser will download the manifest
+file and it will compare byte-by-byte with the stored version. If it is the
+same, the noupdate event will be fired; if the manifest has changed, then
+the whole package will be discarded from the cache and downloaded again
+from the server firing the updateready event.</p>
+<p>It's important to understand that when an update is available, the user is
+still seeing the old version as it was loaded from the cache, so the next
+reload or access will use the updated resources.</p>
+<div class="ArticleDiv" id="Client">CLIENT-SIDE STORAGE</div>
+<p>Whether we are online or offline we can store information on the user&#39;s
+device using some of the client-side storage APIs, including localStorage,
+Web SQL Storage, IndexedDB and FileSystem API.</p>
+<p>Limits vary per platform, but usually localStorage gives us safely at least
+5Mb per origin (protocol+domain+port combination). On some platforms
+such as iOS, we can overpass the 5Mb limit with the user&#39;s permission
+usually up to 50Mb.</p>
+<div class="ArticleDiv" id="Hybrid">HYBRID/NATIVE WEBAPP</div>
+<p>With HTML5 we can create native webapps, also known as hybrid apps,
+and distribute them through Application Stores.</p>
+<p>These platforms require packaging all the resources, and sometimes
+compiling and signing processes.</p>
+<p>The most important platforms to create native webapps are:</p>
+<h2>Distribution</h2>
+<table>
+	<td class="TableHead">Name</td>
+	<td class="TableHead">Platforms</td>
+	<td class="TableHead">Compatible Stores</td>
+	<tr>
+		<td>WebWorks</td>
+		<td>BlackBerry 5.x-7.x,BlackBerry PlayBook,BlackBerry 10</td>
+		<td>BlackBerry AppWorld</td>
+	</tr>
+	<tr>
+			<td>Windows 8 Store HTML5 apps</td>
+<td>Windows 8</td>
+<td>Microsoft Windows Store</td>
+		</tr>
+	<tr>
+		<td>Nokia S40 webapps</td>
+		<td>Nokia Series 40</td>
+		<td>Nokia Store</td>
+	</tr>
+	<tr>
+	<td>Symbian webapps</td>
+	<td>Symbian</td>
+	<td>Nokia Store</td>
+	</tr>
+	<tr>
+		<td>Mozilla Open Web Apps</td>
+		<td>Firefox OS, Android Desktop</td>
+		<td>Mozilla Marketplace</td>
+	</tr>
+	<tr>
+	<td>Chrome Packaged Apps</td>
+	<td>Desktop Chrome OS Android (future)</td>
+	<td>Chrome Store</td>
+	</tr>
+	<tr>
+		<td>Apache Cordova / Adobe PhoneGap</td>
+		<td>iOS, Android, BlackBerry, Windows Phone, Bada / Tizen, Symbian</td>
+		<td>Apple AppStore, Google Play Store, BlackBerry AppWorld, Microsoft Windows, Phone Store, Nokia Store</td>
+	</tr>
+	
+</table>
+<p>The native HTML5 webapp should be distributed through an application
+store for free or for a fee. To do that, we need to register as publishers in the
+stores and pay the publisher fee as defined in the next table:</p>
+<table>
+	<tr>
+	<td class="TableHead">store</td>
+	<td class="TableHead">publisher fee</td>
+	<td class="TableHead">url</td> 
+	</tr>
+	<tr>
+		<td>Apple AppStore</td>
+		<td>USD 99 per year</td>
+		<td>developer.apple.com/ios/program</td>
+	</tr>
+	<tr>
+		<td>Google Play Store</td>
+		<td>USD 25</td>
+		<td>play.google.com/apps/publish</td>
+	</tr>
+	<tr>
+		<td>Amazon AppStore for Android</td>
+		<td>Free</td>
+		<td>developer.amazon.com/apps/apps</td>
+	</tr>
+	<tr>
+		<td>BlackBerry AppWorld</td>
+		<td>Free</td>
+		<td>appworld.blackberry.com/isvportal</td>
+	</tr>
+	<tr>
+		<td>Windows 8 Store</td>
+		<td>Varies</td>
+		<td>appdev.microsoft.com/StorePortals</td>
+	</tr>
+	<tr>
+		<td>Windows Phone Store</td>
+		<td>USD 99 per year</td>
+		<td>dev.windowsphone.com</td>
+	</tr>
+	<tr>
+		<td>Nokia Store</td>
+		<td>EUR 1</td>
+		<td>publish.nokia.com</td>
+	</tr>
+</table>
+<div class="ArticleDiv">MOBILE BROWSERS</div>
+<table>
+<tr>
+	<td class="TableHead">Platform</td>
+	<td class="TableHead">Default Browser</td>
+	<td class="TableHead">Other Browsers</td>
+	</tr>
+	<tr>
+		<td>iOS</td>
+		<td>Safari (WebKit)</td>
+		<td>Opera Mini, Google Chrome (Web View)</td>
+	</tr>
+	<tr>
+		<td>Android</td>
+		<td>Android Browser(WebKit)</td>
+		<td>Google Chrome (4.0+), Firefox, Opera Mini, Opera Mobile, Opera(WebKit), UC Browser,Dolphin</td>
+	</tr>
+	<tr>
+		<td>BlackBerry</td>
+		<td>BlackBerry Browser(WebKit)</td>
+		<td>Opera Mini (for old smartphones)</td>
+	</tr>
+	<tr>
+		<td>Windows Phone</td>
+		<td>Internet Explorer</td>
+		<td>Nokia Xpress(experimental)</td>
+	</tr>
+	<tr>
+		<td>Symbian</td>
+		<td>Nokia Browser(WebKit)</td>
+		<td>Opera Mobile, Opera Mini</td>
+	</tr>
+	<tr>
+		<td>Firefox OS</td>
+		<td>Firefox </td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Kindle Fire (Android) </td>
+		<td>Amazon Silk</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Nokia S40 </td>
+		<td>Nokia Xpress Browser</td>
+		<td>Opera Mini</td>
+	</tr>
+	<tr>
+		<td>Other</td>
+		<td colspan="2">Jasmine, Dolfin,NetFront, UC Web, webOS Browser (now Iris)</td>
+	</tr>
+</table>
+<div class="ArticleDiv">EMULATORS</div>
+<p>These are the available emulators and simulators per platforms (source:<a href="http://emulato.rs">http://emulato.rs</a>):</p>
+<table>
+	<tr>
+		<td class="TableHead">Platform</td>
+		<td class="TableHead">Host Platforms</td>
+		<td class="TableHead">Where to get it for free</td>
+	</tr>
+	<tr>
+		<td>iOS</td>
+		<td>Mac</td>
+		<td>Search for Xcode on MacApp Store</td>
+	</tr>
+	<tr>
+		<td>Android</td>
+		<td>Windows, Linux, Mac </td>
+		<td>http://developer.android.com/sdk</td>
+	</tr>
+	<tr>
+		<td>Windows Phone</td>
+		<td>Windows 8 Pro</td>
+		<td>Visual Studio 2012 Express for Windows Phone</td>
+	</tr>
+	<tr>
+		<td>Windows 8 Tablet</td>
+		<td>Windows 8 Pro</td>
+		<td>Visual Studio 2012 Express for Windows 8</td>
+	</tr>
+	<tr>
+		<td>BlackBerry 10</td>
+		<td>Windows, Linux, Mac</td>
+		<td>http://developer.blackberry.com/devzone/ develop/simulator/</td>
+	</tr>
+	<tr>
+		<td>BlackBerry 6/7</td>
+		<td>Windows</td>
+		<td>http://us.blackberry.com/sites/developers/ resources/simulators.html</td>
+	</tr>
+	<tr>
+		<td>Firefox OS</td>
+		<td>Windows, Linux, Mac</td>
+		<td>https://addons.mozilla.org/en-US/firefox/addon/firefoxos-simulator/</td>
+	</tr>
+	<tr>
+		<td>Nokia S40</td>
+		<td>Windows</td>
+		<td>https://www.developer.nokia.com/Develop/Series_40/</td>
+	</tr>
+</table>
+<div class="ArticleDiv">REMOTE DEBUGGING</div>
+<p>Support for remote debugging for HTML, CSS and JavaScript:</p>
+<table>
+	<tr>
+		<td class="TableHead">Browser</td>
+		<td class="TableHead">Host Browser</td>
+		<td class="TableHead">Connection Method</td>
+	</tr>
+	<tr>
+		<td>Safari for iOS</td>
+		<td>Safari for Mac</td>
+		<td>USB cable with the device</td>
+	</tr>
+	<tr>
+		<td>Google Chrome on Android</td>
+		<td>Google Chrome Windows, Mac or Linux</td>
+		<td>USB cable with the device and ADB tools (Android Debug Bridge)</td>
+	</tr>
+	<tr>
+		<td>Firefox on Android and Firefox OS</td>
+		<td>Firefox Windows, Mac or Linux</td>
+		<td>TCP via IP Address (same Wi-Fi network)</td>
+	</tr>
+	<tr>
+		<td>BlackBerry 7 and 10 Browser</td>
+		<td>Any Webkit-based desktop browser</td>
+		<td>TCP via IP Address (same Wi-Fi network)</td>
+	</tr>
+	<tr>
+		<td>Opera Mobile for Android or Symbian </td>
+		<td>Opera for Windows,Mac or Linux</td>
+		<td>TCP via IP Address (same Wi-Fi network)</td>
+	</tr>
+</table>
+<div class="ArticleDiv">HTML5 APIS</div>
+<p>These APIs might not be available on all the browsers and platforms. Check <a href="http://caniuse.com">http://caniuse.com</a> or <a href="http://mobilehtml5.org">http://mobilehtml5.org</a> for compatibility tables.</p>
+<div class="NewTitle">Geolocation</div>
+<div class="CodeDiv"><pre> navigator.geolocation.getCurrentPosition(
+ function(position) {
+ var lat = position.coords.latitude;
+var lon = position.coords.longitude;
+ },
+ function () {
+ alert(&#39;Error locating your device&#39;);
+ }
+);</pre></div>
+<p></p>
+<div class="NewTitle">Accelerometer, Magnetometer & Gyroscope</div>
+<p>We can read current acceleration in 3 axes measured in m/s2 including gravity or excluding it on some devices only:</p>
+<div class="CodeDiv"><pre>window.addEventListener(&quot;devicemotion&quot;, function(event) {
+var acceleration = event.accelerationIncludingGravity;
+// acceleration.x, acceleration.y, acceleration.z
+}, false);</pre></div>
+<p>We can also read current device orientation as alpha (direction according to the compass), beta (angle of the tilt front-to-back) and gamma (angle of the tilt left-to-right). All angles are measured in degrees.</p>
+<div class="CodeDiv"><pre>window.addEventListener(&quot;devicemotion&quot;, function(event) {
+var acceleration = event.accelerationIncludingGravity;
+// acceleration.x, acceleration.y, acceleration.z
+}, false);</pre></div>
+<div class="NewTitle">Battery</div>
+<div class="CodeDiv"><pre>var battery = navigator.mozBattery || navigator.webkitBattery;
+var level = battery.level * 100;
+var charging = battery.charging;
+var chargingTimeFully = battery.chargingTime;
+var dischargingTimeEmpty = battery.dischargingTime;
+// Events available
+battery.addEventListener(&quot;levelchange&quot;, handler, false);
+battery.addEventListener(&quot;chargingchange&quot;, handler, false);
+battery.addEventListener(&quot;chargingtimechange&quot;, handler, false);
+battery.addEventListener(&quot;dischargingtimechange&quot;, handler,
+false);</pre></div>
+<div class="NewTitle">Vibration</div>
+<div class="CodeDiv"><pre>// One time vibration for 0.5 seconds
+navigator.vibrate(500);
+// Vibration pattern (vibration/pause)
+navigator.vibrate([500, 500, 1000, 600,100]);</pre></div>
+<div class="NewTitle">Media capture</div>
+<p>Using HTML forms to capture media:</p>
+<div class="CodeDiv"><pre>&lt; input type= &quot;file&quot; accept=&quot;image/*&quot; capture=&quot;camera&quot;&gt;
+&lt;input type=&quot;file&quot; accept=&quot;audio/*&quot; capture=&quot;microphone&quot;&gt;
+&lt;input type=&quot;file&quot; accept=&quot;video/*&quot; capture=&quot;camcorder&quot;&gt;</pre></div>
+<p>Reading the camera as &lt;video&gt; input:</p>
+<div class="CodeDiv"><pre>var video = document.querySelector(&quot;video&quot;);
+var URL = window.URL || window.webkitURL;
+var getUserMedia = navigator.getUserMedia ||
+ navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+var video = document.getElementById(&quot;player&quot;);
+if (getUserMedia) {
+getUserMedia({audio:true, video:true},
+ function(stream){
+ video.src=URL.createObjectURL(stream);
+ video.play();
+ });
+}</pre></div>
+<div class="ArticleDiv">RESOURCES</div>
+<p class="BolderText"> HTML5 documentation:<a href="www.webplatform.org">www.webplatform.org</a></p>
+<p class="BolderText">Can I Use Compatibility Tables:<a href="www.caniuse.com">www.caniuse.com</a></p>
+<p class="BolderText">HTML5 Compatibility Tables:<a href="www.mobilehtml5.org">www.mobilehtml5.org</a></p>
+<p class="BolderText">HTML5 Rocks for Mobile:<a href="www.html5rocks.com/mobile">www.html5rocks.com/mobile</a></p>
+<p class="BolderText">HTML5 demos:<a href="www.html5demos.com">www.html5demos.com</a></p>
+<p class="BolderText">Emulators and Simulators:<a href="www.emulato.rs">www.emulato.rs</a></p>
+<p class="BolderText">HTML5 Test:<a href="www.html5test.com">www.html5test.com</a></p>
+<p class="BolderText">HTML5 Developer Scorecard:<a href="http://www.sencha.com/blog/category/">http://www.sencha.com/blog/category/</a></p>
+<div class="ArticleDiv">About the Author</div>
+
+<div class="AboutAuthorDiv"><img src="images/MaxFirtman.jpg" style="float: left;margin:10px; "/>Max Firtman is a developer, consultant, and speaker, and
+international expert on mobile and web 2.0. Max has
+written two books with O&#39;Reilly (&quot; Programming the Mobile
+Web&quot; and &quot;jQuery Mobile: Up and Running&quot;), is a certified
+Nokia and BlackBerry trainer, and regularly speaks at
+conferences around the world. He has founded several
+companies, taught at several universities, and maintains
+several major mobile HTML5 resource sites, including
+mobile HTML5 compatibility tables (<a href="http://mobilehtml5.
+org/">http://mobilehtml5.
+org/</a>) and media queries test sites (<a href="http://mediaqueriestest.com/">http://mediaqueriestest.com/</a>
+).</pre></div>
+	</div>
+		
+</div>
+
+</body>
+</html>
