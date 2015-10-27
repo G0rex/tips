@@ -1,0 +1,714 @@
+<!Doctype html>
+<html>
+   <head>
+		<title>hello</title> 
+		<link href="Obj_C.css" rel="stylesheet"/>
+   </head>
+<body>
+
+<header class="header_main" >
+	
+		<section class="Head_img">
+			<img src="Task\head_2.jpg" width="100px" height="80px"  /> 
+		</section>
+	
+		<section class="Header_text">
+			<b>D</b>
+		</section>
+		<section class="Header_text_2">
+			<b>Zone Refcardz</b>
+		</section>
+	
+	<section class="header_fon">	
+		<img class= "img_head_fon" src="Task\head.jpg"   /> 	
+	</section>
+</header>
+
+<section class="section_main">
+	<header class="header_body">
+	
+		
+		<section class="section_body_head_right">
+		<section class="text_body_head_right_1"><b>Objective-C</b></section>
+		<section class="text_body_head_right_2">for the iPhone and iPad</section>
+		<section class="text_body_head_right_3">By Ben Ellingson and Matthew McCullough</section>
+		</section>
+			<section class="section_body_head_left">
+				<ul style="list-style-type:disc">
+				
+					<section class="text_body_head_left" ><b>CONTENTS INCLUDE:</b></section><br>
+					
+					<li>An Introduction to the Language and Tools</li>
+					<li>The Syntax</li>
+					<li>Memory Management</li>
+					<li>Tools</li>
+					<li>Debugging</li>
+					<li>XCode Keyboard Shortcuts and more...</li>
+					
+				</ul>
+	
+			</section>
+	</header>
+	
+	<section class="section_body">
+	
+		<section class="section_body_right">
+		
+		<section class="text_body_community">
+							
+							<p></p>
+							
+							<b>dealloc Method</b><br>
+							When an object&aposs retain count reaches 0, it is sent a dealloc
+							message. You will provide implementations of the dealloc
+							method, which will call release on the instances retained
+							variables. Do not call dealloc directly.
+							<pre><section class="text_body_pink">// Book.m: Implement release of member variables
+- (void) dealloc
+{
+	[title release];
+	[author release];
+	[super dealloc];
+}</section></pre>
+							<b>Autorelease Pools</b><br>
+							An autorelease pool (NSAutoreleasePool) contains references to
+							objects that have received an autorelease message. When the
+							<b>autorelease</b> pool is deallocated, it sends a release message to
+							all objects in the pool. Using an autorelease pool may simplify
+							memory management; however, it is less fine grained and may
+							allow an application to hold onto more memory than it really
+							needs. Be watchful of which types and size of objects you use
+							with autorelease.
+							<pre><section class="text_body_pink">// call autorelease on allocated instance to add it to the
+// autorelease pool
+Book *book = [[[Book alloc] init] autorelease];</section></pre>
+							<section class="text_red_text"><b>Categories</b></section>
+							Categories are a powerful language feature which allows
+							you to add methods to an existing class without subclassing.
+							Categories are useful to extend the features of existing classes
+							and to split the implementation of large classes into several
+							files. Categories are not subclasses. Generally, do not use
+							methods in a category to extend existing methods except
+							when you wish to globally erase and redefine the original
+							method. Categories can not add instance variables to a class.
+							<pre><section class="text_body_pink">// BookPlusPurchaseInfo.h adds purchase related methods to 
+// the Book class
+#import &quot;Book.h&quot;
+@interface Book (PurchaseInfo)
+- (NSArray *) findRetailers;
+@end
+// BookPlusPurchaseInfo.m implements the purchase related methods
+#import &quot;BookPlusPurchaseInfo.h&quot;
+@implementation Book (PurchaseInfo)
+- (NSArray *) findRetailers {
+	return [NSArray arrayWithObjects:@&quot;Book World&quot;,nil];
+}
+@end
+
+// call a method defined in the BookPlusPurchaseInfo category
+Book *book = 
+[Book createBook:@&quot;Moby Dick&quot; withAuthor:@&quot;Herman Melvile&quot;];
+NSArray *retailers = [book findRetailers];</section></pre>
+							<section class="text_red_text"><b>Selectors</b></section>
+							Selectors create method identifiers using the SEL datatype. A
+							value can be assigned to a SEL typed variable via the
+							<b>@selector()</b> directive. Selectors, along with NSObject&aposs
+							method <b>performSelector: withObject:</b> enable a class to
+							choose the desired message to be invoked at runtime.
+							<pre><section class="text_body_pink">// Execute a method using a SEL selector and 
+// the performSelector method
+id target = [[Book alloc] init];
+
+// Action is a reference to the &quot;doSomething&quot; method
+SEL action = @selector(doSomething);
+
+// The message sender need not know the type of target object
+// or the message that will be called via the &quot;action&quot; SEL
+[target performSelector: action withObject:nil ];</section></pre>
+							<section class="text_red_text"><b>Working With Files</b></section>
+							iOS applications have access to files in an app-specific home
+							directory. This directory is a sand-boxed portion of the file
+							system. An app can read and write files within this its own
+							hierarchy, but it can not access any files outside of it.
+							<pre><section class="text_body_pink">// Get the path to a iOS App&apos;s &quot;Documents&quot; directory
+NSString *docDir = [NSSearchPathForDirectoriesInDomains
+(NSDocumentDirectory,NSUserDomainMask, YES) lastObject];
+
+// List the contents of a directory
+NSFileManager *fileManager = [NSFileManager defaultManager];
+NSArray *files = 
+[fileManager contentsOfDirectoryAtPath:docDir error:nil];
+for (NSString *file in files) {
+	NSLog(file);
+}
+
+// Create a directory
+NSString *subDir = 
+[NSString stringWithFormat:@&quot;%@/MySubDir&quot;,docDir];
+[fileManager createDirectoryAtPath:subDir attributes:nil];
+
+// Does the file exist?
+NSString *filePath = [NSString stringWithFormat:@&quot;%@/MyFile.txt&quot;,
+docDir];
+BOOL exists = [fileManager fileExistsAtPath: filePath];</section></pre>
+							<section class="text_body_red"><section class="text_body_white_text"><b>TOOLS</b></section></section><br>
+							<section class="text_red_text"><b>Xcode</b></section>
+							The IDE included in the iOS SDK is named Xcode. It is the
+							primary tool in the suite of utilities that ship with the SDK.
+							Xcode has a long history but has been given a dramatic set
+							of feature additions in the modern iPhone and iPad releases,
+							including detection of common user-coded memory leaks and
+							quick-fixing of other syntax and coding mistakes.
+							Plain text editors and command line <b>Make</b> files can be used to
+							produce iOS applications. However, Xcode offers compelling
+							features such as syntax highlighting and code completion.
+							These features make writing Objective-C in the Xcode IDE a
+							delight and a favorite of developers everywhere.
+							<p></p>
+							<img src="Task\Pick_33.jpg" width="560px" />
+							<p></p>
+							Once the code is in a valid-syntax state, compile it by choosing
+							Build <img src="Task\Pick_37.jpg" align="bottom" /> Build from the menus, or <img src="Task\Pick_38.jpg" align="bottom" /> B. If there are code errors,
+							they will appear as a yellow or red icon in the lower right corner
+							of the IDE. Clicking on the icon will reveal a panel detailing the
+							warnings and errors.
+							<p></p>
+							<img src="Task\Pick_34.jpg" width="560px"/>
+							<p></p>
+							Deploying an application to the simulator has two simple steps.
+							First, choose the <b>Simulator</b> target from the main Xcode toolbar.
+							Building and Deploying can be done in one seamless step
+							by pressing the Command and Enter keys. The simulator will
+							receive the compiled application and launch it.
+							<p></p>
+							<img src="Task\Pick_35.jpg" width="auto"  hspace="100px"/>
+							<p></p>
+							To deploy to an iPhone or iPad, first select <b>Device</b> from the
+							aforementioned toolbar menu. Second, right click on the
+							element beneath the Target node of the <b>Groups and Files</b> tree
+							and choose <b>Get Info</b>. Choose the <b>Properties</b> tab and ensure
+							the Identifier matches the name or pattern you established with
+							Apple for your Provisioning Profile at <a href="http://developer.apple.com/iphone">http://developer.apple.com/iphone</a>
+							<p></p>
+							<img src="Task\Pick_36.jpg" width="auto" hspace="89px" />
+							<p></p>
+							<section class="text_red_text"><b>Organizer</b></section>
+							The Organizer window provides a list of favorite projects,
+							enumerates your attached iOS devices, streams the current
+							device console log to screen and displays details of past crash
+							logs. It can be opened from Xcode via <img src="Task\Pick_38.jpg" align="bottom" />+^+O.
+							<p></p>
+							<img src="Task\Pick_39.jpg" width="450px" height="100%" hspace="55px" />
+							<p></p>
+							<section class="text_red_text"><b>Debugging</b></section>
+							The Xcode platform provides a robust debugger and
+							supplementary mechanisms for stepping through code.
+							Breakpoints are easily set by single clicking in the gutter next
+							to any line of code. A blue arrow indicates a breakpoint is set
+							and active.
+							<p></p>
+							<img src="Task\Pick_40.jpg" width="450px" height="100%" hspace="50px"/>
+							<p></p>
+							Once a breakpoint is hit, variables can be inspected and
+							the stack examined via the key combination <img src="Task\Pick_38.jpg" align="bottom" /> + <img src="Task\Pick_46.jpg" width="13px"align="bottom" /> + Y. The
+							bottommost panel is called the console, and is where all
+							logging output, written via calls such as <b>NSLog(@&quotMy counter
+							is: %d&quot, myIntCount)</b>, is routed.
+							<p></p>
+							<img src="Task\Pick_41.jpg" width="450px" height="100%" hspace="60px"/>
+						
+							<p></p>
+							<img src="Task\Pick_42.jpg" width="560px" />
+							<p></p>
+							<section class="text_red_text"><b>Interface Builder</b></section>
+							A tool as powerful as Xcode is Interface Builder. Its name
+							clearly expresses its use for designing Objective-C NIBs and
+							XIBs, which are the binary and XML form of user interface
+							definition files on the Mac, iPhone, and iPad.
+							<p>NIBs, though graphically designed, actually instantiate the
+							objects declared via the tool when called upon via code.
+							Accordingly, it may help to think of IB (as it is known in the
+							community) primarily as a class-instance designer and property
+							value setter.</p>
+							<p>New elements can be added to a design canvas in a dragand-
+							drop WYSIWYG approach via the Library panel, which
+							can be accessed via the <img src="Task\Pick_38.jpg" align="bottom" /> + <img src="Task\Pick_46.jpg" width="13px"align="bottom" /> +L key combination. After
+							saving changes, the design’s behavior can be immediately
+							tested through the Simulate Interface command, which can be
+							invoked via <img src="Task\Pick_38.jpg" align="bottom" /> + R.</p>
+							<p></p>
+							<img src="Task\Pick_43.jpg" width="auto" height="100%" hspace="130px"/>
+							<p></p>
+							<section class="text_red_text"><b>Simulator</b></section>
+							<p>The iPhone and iPad Simulator is another distinct application
+							in the iPhone SDK that communicates and integrates with the
+							Xcode IDE and with Interface Builder. In the Xcode section, we
+							saw how to deploy our application to the Simulator, which both
+							installs the application and launches it.</p>
+							<p>While the Simulator offers a great desktop testing experience
+							that requires no purchase of hardware, it has a few
+							shortcomings such as the lack of a camera, gyroscope, or
+							GPS facilities. The lack of camera is somewhat mitigated by a
+							supply of several stock photos in the Photo application. The
+							harsh absence of a gyroscope is minimized only by the shake
+							and rotate gestures possible through the Hardware menu. And
+							last, the omission of a true GPS simulator is performed by GPS
+							calls always resolving to 1 Infinite Loop, Cupertino, CA, USA.</p>
+							<p>The iPhone Simulator offers iPad, iPhone and iPhone 4
+							simulation modes. The modes are toggled via the Hardware
+							<img src="Task\Pick_37.jpg" align="bottom" /> Device menu.</p>
+							<p></p>
+							<img src="Task\Pick_44.jpg" width="560px" height="100%" />
+							<p></p>
+							The Simulator ships with a limited number of core applications;
+							namely, the Photos, Settings, Camera, Contacts and
+							Safari programs. These are the applications that offer API
+							connectivity from the source code of your application. For a
+							broader set of programs and more realistic mobile horsepower
+							CPUs, testing on an actual iOS device is critical. Commercial
+							apps that you&apos;ve purchased from the iTunes App Store cannot
+							be installed on the Simulator for DRM reasons and the vast
+							difference in CPU architecture of x86 desktops and ARM
+							mobile devices.
+							<p></p>
+							<section class="text_red_text"><b>Xcode Keyboard Shortcuts</b></section>
+							<b>Common XCode Shortcuts</b>
+							<p></p>
+							<img src="Task\Pick_45.jpg" width="450px" height="100%"hspace="50px"/>
+							<p></p>
+							<section class="text_red_text"><b>Unit Testing and Code Coverage</b></section>
+							Currently, the unit testing tools for Objective-C are less mature
+							than those of other languages. XCode currently includes
+							the OCUnit unit testing framework. OCUnit tests are coded
+							similarly to those of xUnit tests in languages such as Java. The
+							Google Toolbox for Mac provides several useful enhancements
+							to OCUnit and is the testing solution currently recommended
+							by ThoughtWorks for the iOS platform. Complementing
+							OCUnit is OCMock, an Objective-C implementation of mock
+							objects. CoverStory can be used in concert with OCUnit and
+							OCMock to check the code coverage of your tests.
+							<p></p>
+							<section class="text_red_text"><b>Resources</b></section>
+							SDK<br>
+							Apple Developer Programs - <a href="http://developer.apple.com/">http://developer.apple.com/</a>
+							<br> 
+							iOS SDK - <a href="http://developer.apple.com/iphone/index.action">http://developer.apple.com/iphone/index.action</a><br><p></p>
+							Testing<br>
+							Google Toolbox for Mac - <a href="http://code.google.com/p/google-toolbox-for-mac/">http://code.google.com/p/google-toolbox-for-mac/</a><br>
+							OCMock - <a href="http://www.mulle-kybernetik.com/software/OCMock/">http://www.mulle-kybernetik.com/software/OCMock/</a>
+							CoverStory - <a href="http://code.google.com/p/coverstory/">http://code.google.com/p/coverstory/</a>
+							<br><p></p>
+							Blogs, Videos, Books<br>
+							WWDC 2010 Session Videos - <a href="http://developer.apple.com/videos/wwdc/2010/">http://developer.apple.com/videos/wwdc/2010/</a><br>
+							Objective-C Basics - <a href="http://en.wikibooks.org/wiki/Cocoa_Programming/Objective-C_basics">http://en.wikibooks.org/wiki/Cocoa_Programming/Objective-C_basics</a><br>
+							iPhone Development Wiki - <a href="http://iphonedevwiki.net/index.php/Main_Page">http://iphonedevwiki.net/index.php/Main_Page</a><br>
+							The Objective-C Programming Language - <a href="http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/ObjectiveC/">http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/ObjectiveC/</a><br>
+							Bookmarks - <a href="http://delicious.com/matthew.mccullough/objectivec">http://delicious.com/matthew.mccullough/objectivec</a>
+							
+			</section>
+		</section>
+		
+		<section class="section_body_left">
+		<section class="text_body_community">
+		<section class="text_body_red"><section class="text_body_white_text"><b>AN INTRODUCTION TO THE LANGUAGE AND TOOLS</b></section></section>
+									<p></p>
+									Objective-C is the primary language used to create
+									applications for Apple&prime;s Mac OS X and iOS (iPhone and iPad)
+									platforms. Objective-C was created by Brad Cox and Tom Love
+									in the early 1980s. In 1988, Objective-C was licensed by NeXT,
+									a company founded and helmed by Steve Jobs during his
+									absence from Apple. Apple acquired NeXT in 1996, bringing
+									Objective-C to the Macintosh platform.
+									<p></p>
+									Objective-C is an object oriented superset of ANSI C. Its
+									object syntax is derived from Smalltalk. It supports single
+									inheritance, implementation of multiple interfaces via the
+									<b>@protocol</b> syntax, and the redefinition and augmentation of
+									(open) classes via categories. Apple&prime;s iPhone SDK for the
+									iOS mobile operating system offers developers a rich set of
+									Objective-C APIs. This free SDK, which includes the Xcode
+									IDE, is used to create applications for the iPhone, iPad, and
+									iPod Touch.
+									<p></p>
+							<section class="text_body_red"><section class="text_body_white_text"><b>THE SYNTAX</b></section></section>
+							<p></p>
+							<section class="text_red_text"><b>Class Declaration</b></section>
+							Objective-C classes typically include an interface <b>.h</b> and an
+							implementation <b>.m</b> pair of files. The <b>.h</b> file contains property
+							and method declarations. The <b>.m</b> file contains method
+							implementations.
+							<p></p>
+							<b>Example .h interface file</b>
+							<pre><section class="text_body_pink">#import &lt;Foundation/Foundation.h&gt;
+ @interface Speaker : NSObject {
+	NSInteger *ID;
+	NSString *name;
+ }
+ @property NSInteger *ID;
+ @property(nonatomic,retain) NSString *name;
+ - (void) doSomething: (NSString *) value anotherValue: (int) value2;
+ @end</section></pre>				
+							<b>Example .m implementation file</b>
+									<pre><section class="text_body_pink">#import &quot;Speaker.h&quot;
+@implementation Speaker
+@synthesize ID,name;
+- (void) doSomething: (NSString *) value anotherValue: (int) value2 {
+	// do something
+}
+@end</section></pre>
+							<section class="text_red_text"><b>Inheritance</b></section>
+							Class inheritance is specified in the .h interface file with the
+							syntax:<b> @interface &ltMyClass> : &ltParentClass></b>. The following
+							example tells the compiler that the Employee class inherits
+							from (extends) the Person class.
+							<pre><section class="text_body_pink">// Employee.h file
+@interface Employee : Person {
+}
+@end</section></pre>
+							<img src="Task\Pick_4.jpg" width="560px"  />
+							<p></p>
+							<section class="text_red_text"><b>Interfaces</b></section>
+							Objective-C interfaces are created using the <b>@protocol</b>
+							declaration. Any class can implement multiple interfaces.
+							Interfaces are typically declared in a <b>.h</b> header file and can be
+							included via <b>#import</b> statements in the <b>.h</b> header file of other
+							classes.
+							<pre><section class="text_body_pink">// Mappable.h: Declare the Mappable @protocol
+@protocol Mappable
+- (double) latitude;
+- (double) longitude;
+@end
+
+// Location.h: Specify that Location class implements the Mappable
+// @protocol
+#import &quot;Mappable.h&quot;
+@interface Location : NSObject &lt;Mappable&gt; {
+}
+@end
+
+// Location.m: Provide implementations for the Mappable methods
+@implementation Location
+- (double) latitude {
+	return 46.553666;
+}
+- (double) longitude {
+	return -87.40551;
+}
+@end</section></pre>
+							<section class="text_red_text"><b>Primitive Data Types</b></section>
+							As a superset of ANSI C, Objective-C supports its same
+							primitive data types.
+							<p></p>
+							<img src="Task\Pick_6.jpg" width="560px"  border="1px" />
+							
+							<p></p>
+							<section class="text_red_text"><b>Common Object Data Types</b></section>
+							<img src="Task\Pick_8.jpg" width="560px"  border="1px" />
+							<p></p>
+							<section class="text_red_text"><b>Instance Variables</b></section>
+							Class instance variables are declared within a curly braced {}
+							section of the <b>.h</b> file.
+							<pre><section class="text_body_pink">// Book.h: Variables declared in a header file
+@interface Book : NSObject {
+	NSString *title;
+	NSString *author;
+	int pages;
+}
+@end</section></pre>
+							Notice that the object variable declarations are preceded by
+							* symbol. This indicates that the reference is a pointer to an
+							object and is required for all object variable declarations.
+							<p></p>
+							<section class="text_red_text"><b>Dynamic Typing</b></section>
+							Objective-C supports dynamic typing via the <b>id</b> keyword.
+							<pre><section class="text_body_pink">NSString *name1 = @&quot;Bob&quot;;
+// name2 is a dynamically typed NSString object
+id name2 = @@&quot;Bob@&quot;;
+if ([name1 isEqualToString:name2]) {
+	// do something
+}</section></pre>
+							<section class="text_red_text"><b>Methods</b></section>
+							Methods are declared in the <b>.h</b> header file and implemented in
+							the <b>.m</b> implementation file.
+							<pre><section class="text_body_pink">// Book.h: Declare methods in the header file
+@interface Book : NSObject {
+}
+- (void) setPages: (int) p;
+- (int) pages;
+@end
+
+// Book.m: Implement methods in the implementation file
+@implementation Book
+- (void) setPages: (int) p {
+	pages = p;
+}
+- (int) pages {
+	return pages;
+}
+@end</section></pre>
+							<img src="Task\Pick_12.jpg" width="560px" />
+							<p></p>
+							<b>Using Dot Notation Method Invocation</b>
+							<p></p>
+							Objective-C 2.0 added the ability to invoke property accessor
+							methods (getters/setters) using &quot.&quot notation.
+							<pre><section class="text_body_pink">// Using dot notation calls the book instance&apos;s setAuthor method
+book.author = @@&quot;Herman Melville@&quot;;
+// equivalent to
+[book setAuthor: @@&quot;Herman Melville@&quot;];</section></pre>
+							<b>Multi Parameter Methods</b><p></p>
+							Multi-Parameter methods are more verbose than other
+							languages. Each parameter includes both an external name,
+							data type, and a local variable name. The external parameter
+							name becomes a formal part of the method name.
+								<pre><section class="text_body_pink">// declare a method with multiple parameters
+- (void) addBookWithTitle: (NSString *) aTitle andAuthor: (NSString *)
+anAuthor;
+
+// invoke a method with multiple parameters
+[self addBookWithTitle: @@&quot;Moby Dick@&quot; andAuthor: 
+@@&quot;Herman Melville@&quot;];</section></pre>
+							<section class="text_red_text"><b>Self and Super Properties</b></section>
+							Objective-C objects include a <b>self</b> property and a <b>super</b>
+							property. These properties are mutable and can be assigned
+							in an advanced technique called &quotswizzling&quot. Most commonly,
+							the <b>self</b> attribute is used to execute a method on the
+							enclosing object.
+								<pre><section class="text_body_pink">[self setAuthor: @&quot;Herman Melville&quot;];
+// Invoke methods on the &quot;super&quot; property to execute parent class
+// behavior. a method that overrides a parent class method 
+// will likely call the parent class method
+- (void) doSomething: (NSString *)value {
+	[super doSomething: value];
+	// do something derived-class specific
+}</section></pre>
+							<section class="text_red_text"><b>Properties using @property and @synthesize</b></section>
+								Objective-C 2.0 added property declaration syntax in order to
+								reduce verbose coding of getter and setter methods.
+									<pre><section class="text_body_pink">// use of @property declaration for the title variable is equivalent
+// to declaring a &quot;setTitle&quot; mutator and &quot;title&quot; accessor method.
+@interface Book : NSObject {
+	NSString *title;
+}
+@property (retain, nonatomic) NSString *title;
+@end
+
+// use the @synthesize declaration in the .m implementation file
+// to automatically implement setter and getter methods.
+@implementation Book
+@synthesize title, author; //Multiple variables
+@synthesize pages; //Single variable
+@end</section></pre>
+							Multiple variables may be included in a single @synthesize
+							declaration. Alternatively, a class may include multiple
+							@synthesize declarations.
+							<p></p>
+							<b>@property Attributes</b>
+							<p>
+							Property attributes specify behaviors of generated getter
+							and setter methods. Attribute declarations are placed in
+							parenthesis () after the @property declaration. The most
+							common values used are (retain, nonatomic). retain
+							indicates that the [retain] method should be called on the
+							newly assigned value object. See the memory management
+							section for further explanation. nonatomic indicates that
+							the assignment operation does not check for thread access
+							protection, which may be necessary in multi-threaded
+							environments. readonly may be specified to indicate the
+							property&apos;s value can not be set.</p>
+							<p></p>
+							<section class="text_red_text"><b>Object Initialization</b></section>
+							Object instances are created in two steps. First, with a call to
+							alloc and second, with a call to init.
+							<pre><section class="text_body_pink">// example of 2 step object initialization
+Book *book = [[Book alloc] init];
+// equivalent to
+Book *book2 = [Book alloc];
+book2 = [book init];</section></pre>
+							In order to perform specific object initialization steps, you will
+							often implement the <b>init</b> or an <b>initWith</b> method. Notice
+							the syntax used around the <b>self</b> property in the following
+							example. This is a standard init pattern found in Objective-C.
+							Also notice the method uses a dynamic <b>id</b> return type.
+							<pre><section class="text_body_pink">// Event.m: Implementation overrides the &quot;init&quot; method to assign a 
+//default date value
+@implementation Event
+- (id) init {
+	self = [super init];
+	if (self != nil) {
+		self.date = [[NSDate alloc] init];
+	}
+	return self;
+}
+@end</section></pre>
+							<b>Class Constructors</b><br>
+							Classes often include constructor methods as a convenience.
+							The method type is <b>+</b> to indicate that it is a class (static)
+							method.
+								<pre><section class="text_body_pink">// Constructor method declaration
++ (Book *) createBook: (NSString *) aTitle withAuthor: (NSString *)
+anAuthor;
+
+// Invoke a class constructor
+Book *book2 = [Book createBook: @&quot;Moby Dick&quot; withAuthor: @&quot;Herman
+Melville&quot;];</section></pre>
+							<section class="text_red_text"><b>#import Statements</b></section>
+							<b>#import</b> statements are required to declare the classes and
+							frameworks used by your class. <b>#import</b> statements can be
+							included at the top of both <b>.h</b> header and <b>.m</b> implementation
+							files.
+							<pre><section class="text_body_pink">// import a class
+#import @&quot;Book.h@&quot;
+
+// import a framework
+#import &lt;MapKit/MapKit.h&gt;</section></pre>
+							<section class="text_red_text"><b>Control Flow</b></section>
+							<pre><section class="text_body_pink">// basic for loop
+for (int x=0; x < 10; x++) {
+	NSLog(@&quot;x is: %d@&quot;,x);
+}
+
+// for-in loop
+NSArray *values = [NSArray arrayWithObjects:@&quot;One&quot;,
+@&quot;Two&quot;,@&quot;Three&quot;,nil];
+
+for(NSString *value in values) {
+	// do something
+}
+
+// while loop
+BOOL condition = YES;
+while (condition == YES) {
+	// doSomething
+}
+
+// if / else statements
+BOOL condition1 = NO;
+BOOL condition2 = NO;
+if (condition1) {
+	// do something
+} else if(condition2) {
+	// do other thing
+} else {
+	// do something else
+}
+
+// switch statement
+int x = 1;
+switch (x) {
+	case 1:
+		// do something
+		break;
+	case 2:
+		// do other thing
+		break;
+	default:
+		break;
+}</section></pre>
+							<section class="text_red_text"><b>Strings</b></section>
+							Objective-C string literals are prefixed with an &quot@&quot symbol (e.g.
+							@&quotHello World&quot). This creates instances of the NSString class;
+							instead of C language CFStrings.
+							<pre><section class="text_body_pink">// create a string literal via the &quot;@&quot; symbol
+NSString *value = @&quot;foo bar&quot;;
+NSString *value2 = [NSString stringWithFormat:@&quot;foo %@&quot;,@&quot;bar&quot;];
+// string comparison
+if ([value isEqualToString:value2]) {
+	// do something
+}
+NSURL *url = [NSURL URLWithString:@&quot;http://www.google.com&quot;];
+NSString *value3 = [NSString stringWithContentsOfURL:url];
+NSString *value4 = [NSString stringWithContentsOfFile: @&quot;file.txt&quot;];</section></pre>
+							<b>NSLog / NSString Formatters</b>
+							<br>
+							Formatters are character sequences used for variable
+							substitution in strings.
+							<pre><section class="text_body_pink">%@ for objects
+%d for integers
+%f for floats
+// Logs &quot;Bob is 10 years old&quot;
+NSLog(@&quot;%@ is %d years old&quot;, @&quot;Bob&quot;, 10);</section></pre>
+							<section class="text_red_text"><b>Data Structures</b></section>
+							<b>Using NSArray</b>
+							<pre><section class="text_body_pink">// Create a fixed size array. Notice that nil termination is required
+NSArray *values = [NSArray arrayWithObjects:@&quot;One&quot;,@&quot;Two&quot;,nil];
+// Get the array size
+int count = [values count];
+// Access a value
+NSString *value = [values objectAtIndex:0];
+// Create a variable sized array
+NSMutableArray *values2 = [[NSMutableArray alloc] init];
+[values2 addObject:@&quot;One&quot;];</section></pre>
+							<b>Using NSDictionary</b>
+							<pre><section class="text_body_pink">NSDictionary *di = [NSDictionary dictionaryWithObjectsAndKeys:
+	@&quot;One&quot;,[NSNumber numberWithInt:1],
+	@&quot;Two&quot;,[NSNumber numberWithInt:2],nil];
+NSString *one = [di objectForKey: [NSNumber numberWithInt:1]];
+NSMutableDictionary *di2 = [[NSMutableDictionary alloc] init];
+[di2 setObject:@&quot;One&quot; forKey:[NSNumber numberWithInt:1]];</section></pre>
+<section class="text_red_text"><b>Memory Management</b></section>
+							Objective-C 2.0 includes garbage collection. However,
+							garbage collection is not available for iOS apps. iOS apps
+							must manage memory by following a set of object ownership
+							rules. Each object has a retain count which indicates the
+							number of objects with an ownership interest in that object.
+							Ownership of an object is automatically taken when you call a
+							method beginning with <b>alloc</b>, prefixed with <b>new</b>, or containing
+							<b>copy</b>. Ownership is manually expressed by calling the <b>retain</b>
+							method. You relinquish object ownership by calling <b>release</b> or
+							<b>autorelease</b>.
+							<p></p>
+							When an object is created it has a retain count of 1<br>
+							When the &quotretain&quot message is sent to an object, the retain count is incremented by 1<br>
+							When the &quotrelease&quot message is sent to an object, the retain count is decremented by 1<br>
+							When the retain count reaches 0, it is deallocated
+							<pre><section class="text_body_pink">// alloc sets the retain count to 1
+Book *book = [[Book alloc] init];
+// do something...
+
+// Release message decrements the retain count,
+// Retain count reaches 0. Book will be deallocated
+[book release];</section></pre>							
+
+			</section>
+		</section>
+	</section>
+	
+	<section class="footer_body">
+	<section class="footer_body_right">
+	<section class="footer_body_left_4"><b>RECOMMENDED BOOK</b></section>
+		<section class="footer_body_right_1"><img src="Task\Pick_51.jpg" width="100%"    hspace="" /></section>
+		
+		<section class="footer_body_right_3">The second edition of this book thoroughly covers the
+latest version of the language, Objective-C 2.0. And it
+shows not only how to take advantage of the Foundation
+framework’s rich built-in library of classes but also how to
+use the iPhone SDK to develop programs designed for the
+iPhone/iPad platform.</section>
+		</section>
+	<section class="footer_body_left">
+	<section class="footer_body_left_4"><b>ABOUT THE AUTHORS</b></section>
+		<section class="footer_body_left_1"><img src="Task\Pick_49.jpg" width="90%"    hspace="" border="1px"/></section>
+		<section class="footer_body_left_2"><img src="Task\Pick_50.jpg" width="90%"    hspace="" border="1px"/></section>
+		<section class="footer_body_left_3"><section class="text_red_text"><b>Ben Ellingson</b></section> is a software engineer and consultant. He is
+the creator of nofluffjuststuff.com, many related No Fluff Just
+Stuff websites and mobile applications. During Ben&apos;s 13 years
+of development experience, he has helped create systems for
+conference management, video-on-demand, and online travel.
+You can keep up with Ben&apos;s work at <a href="http://benellingson.blogspot.com">http://benellingson.blogspot.com</a>
+and <a href="http://http://twitter.com/benellingson.">http://twitter.com/benellingson</a>.<section class="text_red_text"><b>Matthew McCullough</b></section>is an energetic 15 year veteran of enterprise
+software development, open source education, and co-founder
+of Ambient Ideas, LLC, a Denver, Colorado, USA consultancy.
+Matthew is a published author, open source creator, speaker at
+over 100 conferences, and author of three of the top 10 Refcardz
+of all time. He writes frequently on software and presenting at his
+blog: <a href ="http://ambientideas.com/blog"> http://ambientideas.com/blog</a></section>
+		</section>
+	</section>
+</section>
+
+<footer class="footer_main">
+</footer>
+
+</body>
+</html>
